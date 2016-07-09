@@ -1,0 +1,145 @@
+﻿<%@ Page Title="Account / Brand" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AccountBrand.aspx.cs" Inherits="MapC.AccountBrand" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            showResult();
+        });
+        function showResult() {
+            $('#divResultInfo').show();
+            $('#divResultView').hide();
+            $('#divResultLoader').html('<table style="width: 100%;border-bottom: 1px solid rgb(221, 221, 221);"><tr><td align="center" style="text-align:center;padding-bottom:50px;" colspan="6"><img alt="loading" src="../images/ajax-loader_new.gif"></td></tr></table>');
+            $('#divResultInfo').html('<span style="margin:20px;"><h4>Please Wait...</h4></span>');
+            $.post('Ajax/GetAccountBrand.ashx', { "ID": -1000 }, function (data) {
+                try {
+                    if (data != null) {
+                        var temp = new Array();
+                        temp = data.split("@@");
+                        if (data.indexOf("Error") == 0) alert(temp[1]);
+                        else if (data != "") {
+
+                            var table = ' <div class="row">';
+                            var jsonData = eval('(' + data + ')')
+                            var tr = '';
+                            var charAtZero = '';
+                            var count = 0;
+                            if (jsonData.length > 0) {
+                                for (var i = 0; i < jsonData.length; i++) {
+                                    if (jsonData[i].AccountName.substring(0, 1).toUpperCase() != charAtZero) {
+                                        charAtZero = jsonData[i].AccountName.substring(0, 1).toUpperCase();
+                                        if (count == 1) tr += '</div></div>';
+                                        tr += '<div class="panel panel-default"><div class="panel-heading"> <strong>' + charAtZero + '</strong></div><div class="panel-body">'
+                                        count = 0;
+                                    }
+                                    count = 1;
+                                    tr += '<div class="col-md-3"><p class="thumbnail text-center" onclick="ShowData(\'' + jsonData[i].AccountName + '\',\'' + jsonData[i].ID + '\')">' + jsonData[i].AccountName + '</p></div>';
+                                }
+                                tr += ' </div>';
+                            }
+                            else tr += '<span class="label label-info">No Records Found!!</span></div>';
+                            $('#divResultInfo').html(table + tr);
+
+
+                        }
+                    }
+                }
+                catch (ex) {
+                    alert(ex);
+                }
+                finally {
+                    $('#divResultLoader').html('');
+                }
+            });
+        }
+        function ShowMM(Country) {
+
+            $('#divResultView').show();
+            $('#divResultInfo').hide();
+        }
+        function ShowList() {
+            $('#divResultView').hide();
+            $('#divResultInfo').show();
+        }
+        function ShowData(AccountName,AccountId) {
+            var arr = new Array();
+            arr[0] = AccountName;
+            arr[1] = AccountId;
+
+            $('#divResultInfo').hide();
+            $('#divResultView').show();
+            $('#divResultLoader').html('<table style="width: 100%;border-bottom: 1px solid rgb(221, 221, 221);"><tr><td align="center" style="text-align:center;padding-bottom:50px;" colspan="6"><img alt="loading" src="../images/ajax-loader_new.gif"></td></tr></table>');
+            $('#divResultView').html('<span style="margin:20px;"><h4>Please Wait...</h4></span>');
+            $.post('Ajax/GetAccountBrand.ashx', { "ID": arr[1] }, function (data) {
+                try {
+                    if (data != null) {
+                        var temp = new Array();
+                        temp = data.split("@@");
+                        if (data.indexOf("Error") == 0) alert(temp[1]);
+                        else if (data != "") {
+                            var table = '<div class="col-sm-12 "><button type="button" class="btn btn-primary" onclick="ShowList()" >&laquo; Back </button></div><br/><br/>';
+                            var jsonData = eval('(' + data + ')')
+                            table += ' <div class="panel panel-default"><div class="panel-heading"><button class="btn btn-primary" type="button">' + arr[0] + ' <span class="badge">' + jsonData.length + '</span></button></div><div class="table-responsive" style="overflow:auto;">';
+                            table += ' <table class="table table-hover text-center"><thead><tr><th>TmmtDate</th><th>BrandName</th><th>ProductType</th><th>BrandProdMTY</th><th>MarketShare</th><th>ProductionCostMT</th><th>RetailPriceEurKg</th><th>Comments1</th><th>EnzymaticYN</th><th>EnzymesUsed</th>'
+                            table += '<th>EnzymeSalesMT</th><th>EnzymeDosage</th><th>EnzymeSalesPotentialMT</th><th>PriceEnzymeSolutionkg</th><th>TurnOverPotential</th><th>EnzymeSpendMT</th><th>Comments2</th></tr></thead><tbody>';
+                            var tr = '';
+                            if (jsonData.length > 0) {
+                                for (var i = 0; i < jsonData.length; i++) {
+                                    tr += '<tr><td>' + jsonData[i].TmmtDate + '</td><td>' + jsonData[i].BrandName + '</td><td>' + jsonData[i].ProductType + '</td><td>' + jsonData[i].BrandProdMTY + '</td><td>' + jsonData[i].MarketShare + '</td><td>' + jsonData[i].ProductionCostMT + '</td><td>' + jsonData[i].RetailPriceEurKg + '</td><td>' + jsonData[i].Comments1 + '</td><td>' + jsonData[i].EnzymaticYN + '</td><td>' + jsonData[i].EnzymesUsed + '</td><td>' + jsonData[i].EnzymeSalesMT + '</td><td>' + jsonData[i].EnzymeDosage + '</td><td>' + jsonData[i].EnzymeSalesPotentialMT + '</td><td>' + jsonData[i].PriceEnzymeSolutionkg + '</td><td>' + jsonData[i].TurnOverPotential + '</td><td>' + jsonData[i].EnzymeSpendMT + '</td><td>' + jsonData[i].Comments2 + '</td></tr>';
+                                }
+                                tr += '</tbody></table></div></div>';
+                            }
+                            else tr += '<tr><td colspan="5">No Record Available!!</td></tr></tbody></table></div></div>';
+                            $('#divResultView').html(table + tr);
+
+
+                        }
+                    }
+                }
+                catch (ex) {
+                    alert(ex);
+                }
+                finally {
+                    $('#divResultLoader').html('');
+                }
+            });
+        }
+
+
+    </script>
+
+</asp:Content>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <br />
+    <br />
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="#">Market</a></li>
+        <li role="presentation"><a href="TechMap.aspx">Technical</a></li>
+        <li role="presentation" class="active carrot"><a href="AccountBrand.aspx">Account/Brand</a></li>
+        <li role="presentation"><a href="ConAcctBrnd.aspx">Country/Account/Brand</a></li>
+        <li role="presentation"><a href="Batella.aspx">Batella</a></li>
+    </ul>
+    <br />
+    <br />
+
+    <div id="divResultInfo" class="qoute-platform-wrap" style="display: none; clear: both;">
+    </div>
+
+    <div id="divResultLoader"></div>
+
+    <asp:HiddenField ID="hdnCountry" runat="server" Value="" />
+    <div id="divResultView" class="qoute-platform-wrap" style="display: block; clear: both;">
+    
+    </div>
+
+    <div style="display: none;" class="sort-loader onboard" id="loader">
+        <p>
+            <img alt="Loading..." src="../images/ajax-loader_new.gif"><br>
+            <span id="lblWaiting">Loading please wait...</span>
+        </p>
+    </div>
+
+    <div id="divMessage" class="message-watch" style="display: none;"></div>
+
+
+</asp:Content>
