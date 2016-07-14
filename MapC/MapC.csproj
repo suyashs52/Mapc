@@ -183,6 +183,7 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Batelle.aspx" />
     <Content Include="ConAcctBrnd.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
@@ -202,6 +203,7 @@
     <Content Include="Ajax\MarketListDropListSave.ashx" />
     <Content Include="Ajax\GetTechList.ashx" />
     <Content Include="Ajax\GetAccountBrand.ashx" />
+    <Content Include="Ajax\GetBatelle.ashx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -371,6 +373,9 @@
     <Compile Include="Ajax\GetAccountBrand.ashx.cs">
       <DependentUpon>GetAccountBrand.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Ajax\GetBatelle.ashx.cs">
+      <DependentUpon>GetBatelle.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Ajax\GetMarketList.ashx.cs">
       <DependentUpon>GetMarketList.ashx</DependentUpon>
     </Compile>
@@ -391,6 +396,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Batelle.aspx.cs">
+      <DependentUpon>Batelle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Batelle.aspx.designer.cs">
+      <DependentUpon>Batelle.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ConAcctBrnd.aspx.cs">
       <DependentUpon>ConAcctBrnd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -416,6 +428,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Batelle.cs" />
+    <Compile Include="Models\BatelleFDB.cs" />
     <Compile Include="Models\Formatting.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MarketMapF.cs" />

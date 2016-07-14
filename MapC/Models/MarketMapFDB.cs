@@ -122,28 +122,50 @@ namespace MapC.Models
                     Cnxn.Open();
                     SqlDataReader dr = sc.ExecuteReader();
                     int count = 0;
-                    while (dr.Read())
+                    if (id == 985) {
+                        while (dr.Read())
+                        {
+                            tmmt = new Tmmt();
+                            tmmt.LookuptoTmmCountryT = Formatting.ConvertNullToInt32(dr["LookuptoTmmCountryT"]);
+                            tmmt.TmmtDate = Formatting.ConvertNullToDateTime(dr["TmmtDate"]);
+                            tmmt.Comments1 = Formatting.ConvertNullToString(dr["AccountName"]);
+                            tmmt.ProductionCapacityMT = Formatting.ConvertNullToDecimal(dr["ProductionCapacityMT"]);
+                            tmmt.TotalMarketShare = Formatting.ConvertNullToDecimal(dr["TotalMarketShare"]);
+                            tmmt.Comments2 = Formatting.ConvertNullToString(dr["BrandName"]);
+                            tmmt.Commets3 = Formatting.ConvertNullToString(dr["ProductType"]);
+                            tmmt.BrandProdMTY = Formatting.ConvertNullToDecimal(dr["BrandProdMTY"]);
+                            tmmt.Comments4 = Formatting.ConvertNullToString(dr["EnzymesUsed"]);
+
+                            this.Add(++count, tmmt);
+                        }
+                    
+                    
+                    }
+                    else
                     {
-                        tmmt = new Tmmt();
-                        tmmt.ID = Formatting.ConvertNullToInt32(dr["LookuptoTmmAcountT"]);
-                        tmmt.TmmtDate = Formatting.ConvertNullToDateTime(dr["TmmtDate"]);
-                        tmmt.Commets3 = Formatting.ConvertNullToString(dr["BrandName"]);
-                        tmmt.Comments4 = Formatting.ConvertNullToString(dr["ProductType"]);
-                        tmmt.BrandProdMTY = Formatting.ConvertNullToDecimal(dr["BrandProdMTY"]);
-                        tmmt.MarketShare = Formatting.ConvertNullToDecimal(dr["MarketShare"]);
-                        tmmt.ProductionCostMT = Formatting.ConvertNullToDecimal(dr["ProductionCostMT"]);
-                        tmmt.RetailPriceEurKg = Formatting.ConvertNullToDecimal(dr["RetailPriceEurKg"]);
-                        tmmt.Comments1 = Formatting.ConvertNullToString(dr["Comments1"]);
-                        tmmt.EnzymaticYN = Formatting.ConvertNullToString(dr["EnzymaticYN"]);
-                        tmmt.Comments5 = Formatting.ConvertNullToString(dr["EnzymesUsed"]);
-                        tmmt.EnzymeSalesMT = Formatting.ConvertNullToDecimal(dr["EnzymeSalesMT"]);
-                        tmmt.EnzymeDosage = Formatting.ConvertNullToDecimal(dr["EnzymeDosage"]);
-                        tmmt.EnzymeSalesPotentialMT = Formatting.ConvertNullToDecimal(dr["EnzymeSalesPotentialMT"]);
-                        tmmt.PriceEnzymeSolutionkg = Formatting.ConvertNullToDecimal(dr["PriceEnzymeSolutionkg"]);
-                        tmmt.TurnOverPotential = Formatting.ConvertNullToDecimal(dr["TurnOverPotential"]);
-                        tmmt.EnzymeSpendMT = Formatting.ConvertNullToDecimal(dr["EnzymeSpendMT"]);
-                        tmmt.Comments2 = Formatting.ConvertNullToString(dr["Comments2"]);
-                        this.Add(++count ,tmmt);
+                        while (dr.Read())
+                        {
+                            tmmt = new Tmmt();
+                            tmmt.ID = Formatting.ConvertNullToInt32(dr["LookuptoTmmAcountT"]);
+                            tmmt.TmmtDate = Formatting.ConvertNullToDateTime(dr["TmmtDate"]);
+                            tmmt.Commets3 = Formatting.ConvertNullToString(dr["BrandName"]);
+                            tmmt.Comments4 = Formatting.ConvertNullToString(dr["ProductType"]);
+                            tmmt.BrandProdMTY = Formatting.ConvertNullToDecimal(dr["BrandProdMTY"]);
+                            tmmt.MarketShare = Formatting.ConvertNullToDecimal(dr["MarketShare"]);
+                            tmmt.ProductionCostMT = Formatting.ConvertNullToDecimal(dr["ProductionCostMT"]);
+                            tmmt.RetailPriceEurKg = Formatting.ConvertNullToDecimal(dr["RetailPriceEurKg"]);
+                            tmmt.Comments1 = Formatting.ConvertNullToString(dr["Comments1"]);
+                            tmmt.EnzymaticYN = Formatting.ConvertNullToString(dr["EnzymaticYN"]);
+                            tmmt.Comments5 = Formatting.ConvertNullToString(dr["EnzymesUsed"]);
+                            tmmt.EnzymeSalesMT = Formatting.ConvertNullToDecimal(dr["EnzymeSalesMT"]);
+                            tmmt.EnzymeDosage = Formatting.ConvertNullToDecimal(dr["EnzymeDosage"]);
+                            tmmt.EnzymeSalesPotentialMT = Formatting.ConvertNullToDecimal(dr["EnzymeSalesPotentialMT"]);
+                            tmmt.PriceEnzymeSolutionkg = Formatting.ConvertNullToDecimal(dr["PriceEnzymeSolutionkg"]);
+                            tmmt.TurnOverPotential = Formatting.ConvertNullToDecimal(dr["TurnOverPotential"]);
+                            tmmt.EnzymeSpendMT = Formatting.ConvertNullToDecimal(dr["EnzymeSpendMT"]);
+                            tmmt.Comments2 = Formatting.ConvertNullToString(dr["Comments2"]);
+                            this.Add(++count, tmmt);
+                        }
                     }
                     dr.Close();
                     sc.Dispose();

@@ -72,35 +72,33 @@
                             var jsonData = eval('(' + data + ')')
                             var tr = '';
                             if (jsonData.length > 0) {
-                                $('#date').val(jsonData[0].TmmtDate);
-                                $('#<%=country.ClientID%>').val(jsonData[0].LookuptoTmmCountryT);
-                                $('#<%=account.ClientID%>').val(jsonData[0].LookuptoTmmAcountT);
-                                $('#<%=accountType.ClientID%>').val(jsonData[0].LookuptoTmmAccountTypeT);
-                                $('#ProductionCapacity').val(jsonData[0].ProductionCapacityMT);
-                                $('#actualtotalproduction').val(jsonData[0].ActualTotalProduction);
-                                $('#TotalMarketShare').val(jsonData[0].TotalMarketShare);
-                                if (jsonData[0].EnzymaticYN == 'false') $('#EnzymaticYN').removeAttr('checked');
-                                else $('#EnzymaticYN').attr('checked','true');
-                                $('#<%=brandName.ClientID%>').val(jsonData[0].LookuptoTmmBrandName);
-                                $('#<%=enzymeSupplier.ClientID%>').val(jsonData[0].LookuptoTmmEnzymeSupplierT);
-                                $('#<%=productType.ClientID%>').val(jsonData[0].LookuptoTmmProductT);
-                                $('#<%=enzymeUsed.ClientID%>').val(jsonData[0].TmmEnzymeName);
-                                $('#<%=tier.ClientID%>').val(jsonData[0].LookuptoTmmTierT);
-                                $('#EnzymeDosage').val(jsonData[0].EnzymeDosage);
-                                $('#PriceEnzymeSolutionkg').val(jsonData[0].PriceEnzymeSolutionkg);
-                                $('#BrandProdMTY').val(jsonData[0].BrandProdMTY);
-                                $('#MarketShare').val(jsonData[0].MarketShare);
-                                $('#EnzymeSalesPotentialMT').val(jsonData[0].EnzymeSalesPotentialMT);
-                                $('#EnzymeSalesMT').val(jsonData[0].EnzymeSalesMT);
-                                $('#RetailPriceKg').val(jsonData[0].RetailPriceKg);
-                                $('#CurrencyName').val(jsonData[0].CurrencyName);
-                                $('#TurnOverPotential').val(jsonData[0].TurnOverPotential);
-                                $('#RetailPriceEurKg').val(jsonData[0].RetailPriceEurKg);
-                                $('#ExchangeRateLocalEUR').val(jsonData[0].ExchangeRateLocalEUR);
-                                $('#EnzymeSpendMT').val(jsonData[0].EnzymeSpendMT);
-                                $('#ProductionCostMT').val(jsonData[0].ProductionCostMT);
-                                $('#Comments2').val(jsonData[0].Comments2);
-                                $('#Comments1').val(jsonData[0].Comments1);
+                                $('#AlcInsol').val(jsonData[0].AlcInsol);
+                                $('#AlcSol').val(jsonData[0].AlcSol);
+                                $('#AppDens').val(jsonData[0].AppDens);
+                                $('#Bl').val(jsonData[0].Bl);
+                                $('#Brand').val(jsonData[0].Brand);
+                                $('#Bu').val(jsonData[0].Bu);
+                                $('#Ca').val(jsonData[0].Ca);
+                                $('#Country').val(jsonData[0].Country);
+                                $('#DryRes').val(jsonData[0].DryRes);
+                                $('#En').val(jsonData[0].En);
+                                $('#Fi').val(jsonData[0].Fi);
+                                $('#Fo').val(jsonData[0].Fo);
+                                $('#Hy').val(jsonData[0].Hy);
+                                $('#ID').val(jsonData[0].ID);
+                                $('#Mi').val(jsonData[0].Mi);
+                                $('#OnTapDens').val(jsonData[0].OnTapDens);
+                                $('#PenInd').val(jsonData[0].PenInd);
+                                $('#pH').val(jsonData[0].pH);
+                                $('#Po').val(jsonData[0].Po);
+                                $('#ProdCode').val(jsonData[0].ProdCode);
+                                $('#Producer').val(jsonData[0].Producer);
+                                $('#So').val(jsonData[0].So);
+                                $('#Su').val(jsonData[0].Su);
+                                $('#SubType').val(jsonData[0].SubType);
+                                $('#Type').val(jsonData[0].Type);
+                                $('#Visc').val(jsonData[0].Visc);
+                                $('#Year').val(jsonData[0].Year);
 
 
                             }
@@ -192,7 +190,7 @@
         <li role="presentation"><a href="TechMap.aspx">Technical</a></li>
         <li role="presentation"><a href="AccountBrand.aspx">Account/Brand</a></li>
         <li role="presentation"><a href="ConAcctBrnd.aspx">Country/Account/Brand</a></li>
-        <li role="presentation"><a href="Batella.aspx">Batella</a></li>
+        <li role="presentation"><a href="Batelle.aspx">Batella</a></li>
     </ul>
     <br /><br />
     <a href="Views/MarketMapF/MarketMapCreate.aspx" >Create New</a>

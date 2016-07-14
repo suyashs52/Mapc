@@ -62,6 +62,10 @@ namespace MapC
                 dt = mmf.FillList(800);
                 if (dt != null)
                 {
+                    DataRow dr = dt.NewRow();
+                    dr[0] = "";
+                    dr[1] = "Select";
+                    dt.Rows.InsertAt(dr, 0);
                     accountType.DataSource = dt;
                     accountType.DataTextField = dt.Columns[1].ColumnName;
                     accountType.DataValueField = dt.Columns[0].ColumnName;
@@ -208,6 +212,7 @@ namespace MapC
                         caab.DataSource = dt;
                         caab.DataTextField = dt.Columns[1].ColumnName;
                         caab.DataValueField = dt.Columns[0].ColumnName;
+                        caab.Items.Insert(0, new ListItem("Select"));
                         caab.DataBind();
                     }
                 }
