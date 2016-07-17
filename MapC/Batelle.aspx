@@ -3,21 +3,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">
-        $('#divResultInfo').hide();
-        $('#divResultView').hide();
-        $('#divResultViewS').hide();
-        $('#divResultView').hide();
-        $('#divResultView').hide();
-        $('#divResultView').hide();
-        $('#divResultView').hide();
-        $('#divResultView').hide();
 
         $(document).ready(function () {
 
+            $('#divResultInfo').hide();
+            $('#divResultView').hide();
+            $('#divResultViewS').hide();
+            $('#divResultViewP').hide();
+            $('#divResultViewB').hide();
+            $('#divResultViewBu').hide();
+            $('#divResultViewE').hide();
+            $('#divResultViewO').hide();
 
             showResult();
         });
         function showResult() {
+            $('#loader').show();
             $('#divResultInfo').show();
             $('#divResultView').hide();
             $('#divResultLoader').html('<table style="width: 100%;border-bottom: 1px solid rgb(221, 221, 221);"><tr><td align="center" style="text-align:center;padding-bottom:50px;" colspan="6"><img alt="loading" src="../images/ajax-loader_new.gif"></td></tr></table>');
@@ -51,6 +52,7 @@
                 }
                 finally {
                     $('#divResultLoader').html('');
+                    $('#loader').hide();
                 }
             });
         }
@@ -66,7 +68,7 @@
         }
         function ShowData() {
             var id = $('#<%=caab.ClientID%> option:selected').val();
-
+            if (id == '') return;
             $('#loader').show();
             $.post('Ajax/GetBatelle.ashx', { "ID": id, "Category": "gen" }, function (data) {
                 try {
@@ -126,7 +128,7 @@
             });
         }
         function SaveData() {
-
+            $('#loader').show();
             $.post('Ajax/GetBatelle.ashx', {
                 "Category": "gene",
                 "AlcInsol": $('#AlcInsol').val(),
@@ -166,7 +168,7 @@
                         temp = data.split("@@");
                         if (data.indexOf("Error") == 0) alert(temp[1]);
                         else if (data != "") {
-
+                            $('#loader').hide();
                             $('#divMessage').html(temp[1]);
                             $("#divMessage").show();
                             $("#divMessage").fadeOut(10000);
@@ -183,9 +185,10 @@
 
             });
         }
-        function ShowDataS() {
+        function ShowDataS(Value) {
+            $('.quote-platform-wrap').hide();
+            $('#divResultView' + Value).show();
             var id = $('#<%=caab.ClientID%> option:selected').val();
-
             $('#loader').show();
             $.post('Ajax/GetBatelle.ashx', { "ID": id, "Category": "gens" }, function (data) {
                 try {
@@ -414,7 +417,9 @@
             });
         }
 
-        function ShowDataP() {
+        function ShowDataP(Value) {
+            $('.quote-platform-wrap').hide();
+            $('#divResultView' + Value).show();
             var id = $('#<%=caab.ClientID%> option:selected').val();
 
             $('#loader').show();
@@ -531,7 +536,9 @@
 
             });
         }
-        function ShowDataB() {
+        function ShowDataB(Value) {
+            $('.quote-platform-wrap').hide();
+            $('#divResultView' + Value).show();
             var id = $('#<%=caab.ClientID%> option:selected').val();
 
             $('#loader').show();
@@ -637,7 +644,9 @@
 
             });
         }
-        function ShowDataBu() {
+        function ShowDataBu(Value) {
+            $('.quote-platform-wrap').hide();
+            $('#divResultView' + Value).show();
             var id = $('#<%=caab.ClientID%> option:selected').val();
 
             $('#loader').show();
@@ -730,70 +739,65 @@
         function SaveDataBu() {
             $('#loader').show();
             $.post('Ajax/GetBatelle.ashx', {
-                "Category": "genbu",
+                "Category": "genbue",
                 "ID": $('#<%=caab.ClientID%> option:selected').val(),
-                "AcetateNa": $('#BAcetateNa').val(),
-                "Active_Carbon": $('#BActive_Carbon').val(),
-                "ATMP": $('#BATMP').val(),
-                "Bentonite": $('#BBentonite').val(),
-                "Benzoic_acid": $('#BBenzoic_acid').val(),
-                "Brand": $('#BBrand').val(),
-                "CitrateNa": $('#BCitrateNa').val(),
-                "Citric_Acid": $('#BCitric_Acid').val(),
-                "Clay": $('#BClay').val(),
-                "Country": $('#BCountry').val(),
-                "DPG": $('#BDPG').val(),
-                "DTMPA": $('#BDTMPA').val(),
-                "DTPA": $('#BDTPA').val(),
-                "DTPMP": $('#BDTPMP').val(),
-                "EDDS": $('#BEDDS').val(),
-                "EDTA": $('#BEDTA').val(),
-                "EDTMPA": $('#BEDTMPA').val(),
-                "GLDA": $('#BGLDA').val(),
-                "HEDP": $('#BHEDP').val(),
-                "Kaolin": $('#BKaolin').val(),
-                "Lactic_Acid": $('#BLactic_Acid').val(),
-                "LaySilic": $('#BLaySilic').val(),
-                "MGDA": $('#PMGDA').val(),
-                "Na_Adipate": $('#PNa_Adipate').val(),
-                "Na_Formiate": $('#PNa_Formiate').val(),
-                "Na_gluconate": $('#PNa_gluconate').val(),
-                "Na_metasilicate_anh_": $('#PNa_metasilicate_anh_').val(),
-                "Na_poly_aspartate_": $('#PNa_poly_aspartate_').val(),
-                "Na_Salicylate": $('#PNa_Salicylate').val(),
-                "Na_Sebacate": $('#PNa_Sebacate').val(),
-                "Na_succinate": $('#PNa_succinate').val(),
-                "Na_Tartrate": $('#PNa_Tartrate').val(),
-                "Na2CO3": $('#PNa2CO3').val(),
-                "Na2O_2SiO2": $('#PNa2O_2SiO2').val(),
-                "Na3PO4": $('#PNa3PO4').val(),
-                "Na4P2O7": $('#PNa4P2O7').val(),
-                "Na5P3O10": $('#PNa5P3O10').val(),
-                "NaHCO3": $('#PNaHCO3').val(),
-                "NTA": $('#PNTA').val(),
-                "Paper_Sheets": $('#PPaper_Sheets').val(),
-                "Phosphoric_acid": $('#PPhosphoric_acid').val(),
-                "ProdCode": $('#PProdCode').val(),
-                "Producer": $('#PProducer').val(),
-                "Silica": $('#Silica').val(),
-                "Strach": $('#Strach').val(),
-                "SubType": $('#SubType').val(),
-                "Sucrose": $('#Sucrose').val(),
-                "Sulfamic_acid": $('#Sulfamic_acid').val(),
-                "Textile": $('#Textile').val(),
-                "Trimethoxy_Benzoic_acid": $('#Trimethoxy_Benzoic_acid').val(),
-                "Type": $('#Type').val(),
-                "Urea": $('#Urea').val(),
-                "Year": $('#Year').val(),
-                "Zeolite4A": $('#Zeolite4A').val(),
-                "ZeoliteP": $('#ZeoliteP').val(),
-                "ZnO": $('#ZnO').val(),
-                "Type": $('#Type').val(),
-                "Urea": $('#Urea').val(),
-                "Year": $('#Year').val(),
-                "Zeolite4A": $('#Zeolite4A').val(),
-                "ZeoliteP": $('#ZeoliteP').val(),
-                "ZnO": $('#ZnO').val(),
+                "AcetateNa": $('#BuAcetateNa').val(),
+                "Active_Carbon": $('#BuActive_Carbon').val(),
+                "ATMP": $('#BuATMP').val(),
+                "Bentonite": $('#BuBentonite').val(),
+                "Benzoic_acid": $('#BuBenzoic_acid').val(),
+                "Brand": $('#BuBrand').val(),
+                "CitrateNa": $('#BuCitrateNa').val(),
+                "Citric_Acid": $('#BuCitric_Acid').val(),
+                "Clay": $('#BuClay').val(),
+                "Country": $('#BuCountry').val(),
+                "DPG": $('#BuDPG').val(),
+                "DTMPA": $('#BuDTMPA').val(),
+                "DTPA": $('#BuDTPA').val(),
+                "DTPMP": $('#BuDTPMP').val(),
+                "EDDS": $('#BuEDDS').val(),
+                "EDTA": $('#BuEDTA').val(),
+                "EDTMPA": $('#BuEDTMPA').val(),
+                "GLDA": $('#BuGLDA').val(),
+                "HEDP": $('#BuHEDP').val(),
+                "Kaolin": $('#BuKaolin').val(),
+                "Lactic_Acid": $('#BuLactic_Acid').val(),
+                "LaySilic": $('#BuLaySilic').val(),
+                "MGDA": $('#BuMGDA').val(),
+                "Na_Adipate": $('#BuNa_Adipate').val(),
+                "Na_Formiate": $('#BuNa_Formiate').val(),
+                "Na_gluconate": $('#BuNa_gluconate').val(),
+                "Na_metasilicate_anh_": $('#BuNa_metasilicate_anh_').val(),
+                "Na_poly_aspartate_": $('#BuNa_poly_aspartate_').val(),
+                "Na_Salicylate": $('#BuNa_Salicylate').val(),
+                "Na_Sebacate": $('#BuNa_Sebacate').val(),
+                "Na_succinate": $('#BuNa_succinate').val(),
+                "Na_Tartrate": $('#BuNa_Tartrate').val(),
+                "Na2CO3": $('#BuNa2CO3').val(),
+                "Na2O_2SiO2": $('#BuNa2O_2SiO2').val(),
+                "Na3PO4": $('#BuNa3PO4').val(),
+                "Na4P2O7": $('#BuNa4P2O7').val(),
+                "Na5P3O10": $('#BuNa5P3O10').val(),
+                "NaHCO3": $('#BuNaHCO3').val(),
+                "NTA": $('#BuNTA').val(),
+                "Paper_Sheets": $('#BuPaper_Sheets').val(),
+                "Phosphoric_acid": $('#BuPhosphoric_acid').val(),
+                "ProdCode": $('#BuProdCode').val(),
+                "Producer": $('#BuProducer').val(),
+                "Silica": $('#BuSilica').val(),
+                "Strach": $('#BuStrach').val(),
+                "SubType": $('#BuSubType').val(),
+                "Sucrose": $('#BuSucrose').val(),
+                "Sulfamic_acid": $('#BuSulfamic_acid').val(),
+                "Textile": $('#BuTextile').val(),
+                "Trimethoxy_Benzoic_acid": $('#BuTrimethoxy_Benzoic_acid').val(),
+                "Type": $('#BuType').val(),
+                "Urea": $('#BuUrea').val(),
+                "Year": $('#BuYear').val(),
+                "Zeolite4A": $('#BuZeolite4A').val(),
+                "ZeoliteP": $('#BuZeoliteP').val(),
+                "ZnO": $('#BuZnO').val(),
+                
 
             }, function (data) {
 
@@ -820,7 +824,9 @@
 
             });
         }
-        function ShowDataEn() {
+        function ShowDataE(Value) {
+            $('.quote-platform-wrap').hide();
+            $('#divResultView' + Value).show();
             var id = $('#<%=caab.ClientID%> option:selected').val();
 
             $('#loader').show();
@@ -836,6 +842,18 @@
                             var tr = '';
                             if (jsonData.length > 0) {
 
+                                $('#EBrand').val(jsonData[0].Brand);
+                                $('#ECarezyme_5SCEVU_G').val(jsonData[0].Carezyme_5SCEVU_G);
+                                $('#ECountry').val(jsonData[0].Country);
+                                $('#EID').val(jsonData[0].ID);
+                                $('#ELipolase_100KLU_G').val(jsonData[0].Lipolase_100KLU_G);
+                                $('#EProdCode').val(jsonData[0].ProdCode);
+                                $('#EProducer').val(jsonData[0].Producer);
+                                $('#ESavinase_16KNPU_G').val(jsonData[0].Savinase_16KNPU_G);
+                                $('#ESubType').val(jsonData[0].SubType);
+                                $('#ETermamyl_300KNU_G').val(jsonData[0].Termamyl_300KNU_G);
+                                $('#EType').val(jsonData[0].Type);
+                                $('#EYear').val(jsonData[0].Year);
 
                             }
 
@@ -851,11 +869,22 @@
 
             });
         }
-        function SaveDataEn() {
+        function SaveDataE() {
             $('#loader').show();
             $.post('Ajax/GetBatelle.ashx', {
                 "Category": "genene",
                 "ID": $('#<%=caab.ClientID%> option:selected').val(),
+                "Brand": $('#EBrand').val(),
+                "Carezyme_5SCEVU_G": $('#ECarezyme_5SCEVU_G').val(),
+                "Country": $('#ECountry').val(),
+                "Lipolase_100KLU_G": $('#ELipolase_100KLU_G').val(),
+                "ProdCode": $('#EProdCode').val(),
+                "Producer": $('#EProducer').val(),
+                "Savinase_16KNPU_G": $('#ESavinase_16KNPU_G').val(),
+                "SubType": $('#ESubType').val(),
+                "Termamyl_300KNU_G": $('#ETermamyl_300KNU_G').val(),
+                "Type": $('#EType').val(),
+                "Year": $('#EYear').val(),
 
 
             }, function (data) {
@@ -883,7 +912,9 @@
 
             });
         }
-        function ShowDataO() {
+        function ShowDataO(Value) {
+            $('.quote-platform-wrap').hide();
+            $('#divResultView' + Value).show();
             var id = $('#<%=caab.ClientID%> option:selected').val();
 
             $('#loader').show();
@@ -898,6 +929,105 @@
                             var jsonData = eval('(' + data + ')')
                             var tr = '';
                             if (jsonData.length > 0) {
+                                $('#OAcid_Blue_9').val(jsonData[0].Acid_Blue_9);
+                                $('#OADPODS').val(jsonData[0].ADPODS);
+                                $('#OAGE').val(jsonData[0].AGE);
+                                $('#OAlkanolamides').val(jsonData[0].Alkanolamides);
+                                $('#OAmidopropylAO').val(jsonData[0].AmidopropylAO);
+                                $('#OAmineOxides').val(jsonData[0].AmineOxides);
+                                $('#OAO').val(jsonData[0].AO);
+                                $('#OBallast').val(jsonData[0].Ballast);
+                                $('#OBenzotriazole').val(jsonData[0].Benzotriazole);
+                                $('#OBenzyl_alcohol').val(jsonData[0].Benzyl_alcohol);
+                                $('#OBlankophor_LPG').val(jsonData[0].Blankophor_LPG);
+                                $('#OBlankophor_RKH120').val(jsonData[0].Blankophor_RKH120);
+                                $('#OBlankophor_TX').val(jsonData[0].Blankophor_TX);
+                                $('#OBrand').val(jsonData[0].Brand);
+                                $('#OButenediol').val(jsonData[0].Butenediol);
+                                $('#OButoxydiglycol').val(jsonData[0].Butoxydiglycol);
+                                $('#OButoxypropanol').val(jsonData[0].Butoxypropanol);
+                                $('#OCaCl2').val(jsonData[0].CaCl2);
+                                $('#OCO2').val(jsonData[0].CO2);
+                                $('#OCountry').val(jsonData[0].Country);
+                                $('#ODEA').val(jsonData[0].DEA);
+                                $('#ODEG').val(jsonData[0].DEG);
+                                $('#ODEGBE').val(jsonData[0].DEGBE);
+                                $('#ODEGME').val(jsonData[0].DEGME);
+                                $('#ODistearyl_ether').val(jsonData[0].Distearyl_ether);
+                                $('#ODMDM_Hydantoin').val(jsonData[0].DMDM_Hydantoin);
+                                $('#ODPGBE').val(jsonData[0].DPGBE);
+                                $('#ODPGME').val(jsonData[0].DPGME);
+                                $('#ODPGPE').val(jsonData[0].DPGPE);
+                                $('#OEG').val(jsonData[0].EG);
+                                $('#OEGBE').val(jsonData[0].EGBE);
+                                $('#OEGHE').val(jsonData[0].EGHE);
+                                $('#OEthanol').val(jsonData[0].Ethanol);
+                                $('#OFADA').val(jsonData[0].FADA);
+                                $('#OFAMA').val(jsonData[0].FAMA);
+                                $('#OFAMIPA').val(jsonData[0].FAMIPA);
+                                $('#OFormaldehyde').val(jsonData[0].Formaldehyde);
+                                $('#OFormic_Acid').val(jsonData[0].Formic_Acid);
+                                $('#OFWA').val(jsonData[0].FWA);
+                                $('#OGlycerol').val(jsonData[0].Glycerol);
+                                $('#OGlycol_distearate').val(jsonData[0].Glycol_distearate);
+                                $('#OHexylene_glycol').val(jsonData[0].Hexylene_glycol);
+                                $('#OID').val(jsonData[0].ID);
+                                $('#OIsopropanol').val(jsonData[0].Isopropanol);
+                                $('#OLignin').val(jsonData[0].Lignin);
+                                $('#OMEA').val(jsonData[0].MEA);
+                                $('#OMethylpropandiol').val(jsonData[0].Methylpropandiol);
+                                $('#OMgCl2').val(jsonData[0].MgCl2);
+                                $('#OMgSO4').val(jsonData[0].MgSO4);
+                                $('#OMPG').val(jsonData[0].MPG);
+                                $('#ONa2SO4').val(jsonData[0].Na2SO4);
+                                $('#ONaCl').val(jsonData[0].NaCl);
+                                $('#ONaOH').val(jsonData[0].NaOH);
+                                $('#ONH4OH').val(jsonData[0].NH4OH);
+                                $('#ONonPolarHydrocarbons').val(jsonData[0].NonPolarHydrocarbons);
+                                $('#OPerfumes').val(jsonData[0].Perfumes);
+                                $('#OPG').val(jsonData[0].PG);
+                                $('#OPGBE').val(jsonData[0].PGBE);
+                                $('#OPGME').val(jsonData[0].PGME);
+                                $('#OPGPE').val(jsonData[0].PGPE);
+                                $('#OPhenoxy_ethanol').val(jsonData[0].Phenoxy_ethanol);
+                                $('#OPPG_Butyl_ether').val(jsonData[0].PPG_Butyl_ether);
+                                $('#OProdCode').val(jsonData[0].ProdCode);
+                                $('#OProducer').val(jsonData[0].Producer);
+                                $('#OQuaternium_15').val(jsonData[0].Quaternium_15);
+                                $('#OSCS').val(jsonData[0].SCS);
+                                $('#OSiliconOils').val(jsonData[0].SiliconOils);
+                                $('#OSorbitol').val(jsonData[0].Sorbitol);
+                                $('#OSTS').val(jsonData[0].STS);
+                                $('#OSubType').val(jsonData[0].SubType);
+                                $('#OSunflower_seed_oil').val(jsonData[0].Sunflower_seed_oil);
+                                $('#OSXS').val(jsonData[0].SXS);
+                                $('#OTEA').val(jsonData[0].TEA);
+                                $('#OTEG').val(jsonData[0].TEG);
+                                $('#OTEGME').val(jsonData[0].TEGME);
+                                $('#OTerpineol').val(jsonData[0].Terpineol);
+                                $('#OTinopal_5BMGX').val(jsonData[0].Tinopal_5BMGX);
+                                $('#OTinopal_AMSGX').val(jsonData[0].Tinopal_AMSGX);
+                                $('#OTinopal_CBSX').val(jsonData[0].Tinopal_CBSX);
+                                $('#OTinopal_DCS').val(jsonData[0].Tinopal_DCS);
+                                $('#OTinopal_SWN').val(jsonData[0].Tinopal_SWN);
+                                $('#OTinopal_UNPAGX').val(jsonData[0].Tinopal_UNPAGX);
+                                $('#OTinosan').val(jsonData[0].Tinosan);
+                                $('#OTiO2').val(jsonData[0].TiO2);
+                                $('#OTPGBE').val(jsonData[0].TPGBE);
+                                $('#OTPGME').val(jsonData[0].TPGME);
+                                $('#OTriclosan').val(jsonData[0].Triclosan);
+                                $('#OTrihydroxystearin').val(jsonData[0].Trihydroxystearin);
+                                $('#OTTEG').val(jsonData[0].TTEG);
+                                $('#OType').val(jsonData[0].Type);
+                                $('#OWater').val(jsonData[0].Water);
+                                $('#OX_2_Butoxyethanol').val(jsonData[0].X_2_Butoxyethanol);
+                                $('#OYear').val(jsonData[0].Year);
+                                $('#OZincPyrithione').val(jsonData[0].ZincPyrithione);
+                                $('#OZn_acetate').val(jsonData[0].Zn_acetate);
+                                $('#OZnCl2').val(jsonData[0].ZnCl2);
+                                $('#OZnCO3').val(jsonData[0].ZnCO3);
+                                $('#OZnSO4').val(jsonData[0].ZnSO4);
+
 
 
                             }
@@ -919,6 +1049,103 @@
             $.post('Ajax/GetBatelle.ashx', {
                 "Category": "genoe",
                 "ID": $('#<%=caab.ClientID%> option:selected').val(),
+                "Acid_Blue_9": $('#OAcid_Blue_9').val(),
+                "ADPODS": $('#OADPODS').val(),
+                "AGE": $('#OAGE').val(),
+                "Alkanolamides": $('#OAlkanolamides').val(),
+                "AmidopropylAO": $('#OAmidopropylAO').val(),
+                "AmineOxides": $('#OAmineOxides').val(),
+                "AO": $('#OAO').val(),
+                "Ballast": $('#OBallast').val(),
+                "Benzotriazole": $('#OBenzotriazole').val(),
+                "Benzyl_alcohol": $('#OBenzyl_alcohol').val(),
+                "Blankophor_LPG": $('#OBlankophor_LPG').val(),
+                "Blankophor_RKH120": $('#OBlankophor_RKH120').val(),
+                "Blankophor_TX": $('#OBlankophor_TX').val(),
+                "Brand": $('#OBrand').val(),
+                "Butenediol": $('#OButenediol').val(),
+                "Butoxydiglycol": $('#OButoxydiglycol').val(),
+                "Butoxypropanol": $('#OButoxypropanol').val(),
+                "CaCl2": $('#OCaCl2').val(),
+                "CO2": $('#OCO2').val(),
+                "Country": $('#OCountry').val(),
+                "DEA": $('#ODEA').val(),
+                "DEG": $('#ODEG').val(),
+                "DEGBE": $('#ODEGBE').val(),
+                "DEGME": $('#ODEGME').val(),
+                "Distearyl_ether": $('#ODistearyl_ether').val(),
+                "DMDM_Hydantoin": $('#ODMDM_Hydantoin').val(),
+                "DPGBE": $('#ODPGBE').val(),
+                "DPGME": $('#ODPGME').val(),
+                "DPGPE": $('#ODPGPE').val(),
+                "EG": $('#OEG').val(),
+                "EGBE": $('#OEGBE').val(),
+                "EGHE": $('#OEGHE').val(),
+                "Ethanol": $('#OEthanol').val(),
+                "FADA": $('#OFADA').val(),
+                "FAMA": $('#OFAMA').val(),
+                "FAMIPA": $('#OFAMIPA').val(),
+                "Formaldehyde": $('#OFormaldehyde').val(),
+                "Formic_Acid": $('#OFormic_Acid').val(),
+                "FWA": $('#OFWA').val(),
+                "Glycerol": $('#OGlycerol').val(),
+                "Glycol_distearate": $('#OGlycol_distearate').val(),
+                "Hexylene_glycol": $('#OHexylene_glycol').val(),
+                "Isopropanol": $('#OIsopropanol').val(),
+                "Lignin": $('#OLignin').val(),
+                "MEA": $('#OMEA').val(),
+                "Methylpropandiol": $('#OMethylpropandiol').val(),
+                "MgCl2": $('#OMgCl2').val(),
+                "MgSO4": $('#OMgSO4').val(),
+                "MPG": $('#OMPG').val(),
+                "Na2SO4": $('#ONa2SO4').val(),
+                "NaCl": $('#ONaCl').val(),
+                "NaOH": $('#ONaOH').val(),
+                "NH4OH": $('#ONH4OH').val(),
+                "NonPolarHydrocarbons": $('#ONonPolarHydrocarbons').val(),
+                "Perfumes": $('#OPerfumes').val(),
+                "PG": $('#OPG').val(),
+                "PGBE": $('#OPGBE').val(),
+                "PGME": $('#OPGME').val(),
+                "PGPE": $('#OPGPE').val(),
+                "Phenoxy_ethanol": $('#OPhenoxy_ethanol').val(),
+                "PPG_Butyl_ether": $('#OPPG_Butyl_ether').val(),
+                "ProdCode": $('#OProdCode').val(),
+                "Producer": $('#OProducer').val(),
+                "Quaternium_15": $('#OQuaternium_15').val(),
+                "SCS": $('#OSCS').val(),
+                "SiliconOils": $('#OSiliconOils').val(),
+                "Sorbitol": $('#OSorbitol').val(),
+                "STS": $('#OSTS').val(),
+                "SubType": $('#OSubType').val(),
+                "Sunflower_seed_oil": $('#OSunflower_seed_oil').val(),
+                "SXS": $('#OSXS').val(),
+                "TEA": $('#OTEA').val(),
+                "TEG": $('#OTEG').val(),
+                "TEGME": $('#OTEGME').val(),
+                "Terpineol": $('#OTerpineol').val(),
+                "Tinopal_5BMGX": $('#OTinopal_5BMGX').val(),
+                "Tinopal_AMSGX": $('#OTinopal_AMSGX').val(),
+                "Tinopal_CBSX": $('#OTinopal_CBSX').val(),
+                "Tinopal_DCS": $('#OTinopal_DCS').val(),
+                "Tinopal_SWN": $('#OTinopal_SWN').val(),
+                "Tinopal_UNPAGX": $('#OTinopal_UNPAGX').val(),
+                "Tinosan": $('#OTinosan').val(),
+                "TiO2": $('#OTiO2').val(),
+                "TPGBE": $('#OTPGBE').val(),
+                "TPGME": $('#OTPGME').val(),
+                "Triclosan": $('#OTriclosan').val(),
+                "Trihydroxystearin": $('#OTrihydroxystearin').val(),
+                "TTEG": $('#OTTEG').val(),
+                "Type": $('#OType').val(),
+                "Water": $('#OWater').val(),
+                "X_2_Butoxyethanol": $('#OX_2_Butoxyethanol').val(),
+                "Year": $('#OYear').val(),
+                "ZincPyrithione": $('#OZincPyrithione').val(),
+                "Zn_acetate": $('#OZn_acetate').val(),
+                "ZnCl2": $('#OZnCl2').val(),
+                "ZnCO3": $('#OZnCO3').val(),
+                "ZnSO4": $('#OZnSO4').val(),
 
 
             }, function (data) {
@@ -946,7 +1173,12 @@
 
             });
         }
-
+        function ShowComposition(Value) {
+            $('#loader').show();
+            $('.quote-platform-wrap').hide();
+            $('#divResultView').show();
+            $('#loader').hide();
+        }
     </script>
 
 </asp:Content>
@@ -963,13 +1195,13 @@
     </ul>
     <br />
     <br />
-    <a href="Views/MarketMapF/BatelleCreate.aspx">Create New</a>
+    <%--<a href="Views/MarketMapF/BatelleCreate.aspx">Create New</a>--%>
 
     <div id="divResultInfo" class="qoute-platform-wrap" style="display: none; clear: both;"></div>
     <div id="divResultLoader"></div>
     <asp:Button ID="marketClick" runat="server" OnClick="marketClick_Click" Style="display: none;" />
     <asp:HiddenField ID="hdnCountry" runat="server" Value="" />
-    <div id="divResultView" class="qoute-platform-wrap" style="display: block; clear: both;">
+    <div id="divResultView" class="quote-platform-wrap" style="display: block; clear: both;">
         <br />
         <br />
         <div class="form-horizontal" role="form">
@@ -999,67 +1231,67 @@
             <div class="form-group">
                 <label class="control-label col-sm-3">ID:</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="ID" placeholder="Enter">
+                    <input type="text" class="form-control" id="ID" disabled="disabled">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-3">Year:</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="Year" placeholder="Enter">
+                    <input type="text" class="form-control" id="Year" disabled="disabled">
                 </div>
                 <label class="control-label col-sm-3">&nbsp;</label>
                 <div class="col-sm-3">
-                    <input type="button" class="form-control btn btn-info" value="Surfactant Composition" />
+                    <input type="button" class="form-control btn btn-info" value="Surfactant Composition" onclick="ShowDataS('S');" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-3">Country:</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="Country" placeholder="Enter">
+                    <input type="text" class="form-control" id="Country" disabled="disabled">
                 </div>
                 <label class="control-label col-sm-3">&nbsp;</label>
                 <div class="col-sm-3">
-                    <input type="button" class="form-control btn btn-success" value="Polymers Composition" />
+                    <input type="button" class="form-control btn btn-success" value="Polymers Composition" onclick="ShowDataP('P');" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-3">Producer:</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="Producer" placeholder="Enter">
+                    <input type="text" class="form-control" id="Producer" disabled="disabled">
                 </div>
                 <label class="control-label col-sm-3">&nbsp;</label>
                 <div class="col-sm-3">
-                    <input type="button" class="form-control btn btn-info" value="Bleach Composition" />
+                    <input type="button" class="form-control btn btn-info" value="Bleach Composition" onclick="ShowDataB('B');" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-3">Brand:</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="Brand" placeholder="Enter">
+                    <input type="text" class="form-control" id="Brand" disabled="disabled">
                 </div>
                 <label class="control-label col-sm-3">&nbsp;</label>
                 <div class="col-sm-3">
-                    <input type="button" class="form-control btn btn-success" value="Builders Composition" />
+                    <input type="button" class="form-control btn btn-success" value="Builders Composition" onclick="ShowDataBu('Bu');" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-3">Type:</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="Type" placeholder="Enter">
+                    <input type="text" class="form-control" id="Type" disabled="disabled">
                 </div>
                 <label class="control-label col-sm-3">&nbsp;</label>
                 <div class="col-sm-3">
-                    <input type="button" class="form-control btn btn-info" value="Enzymes Composition" />
+                    <input type="button" class="form-control btn btn-info" value="Enzymes Composition" onclick="ShowDataE('E');" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-3">Subtype:</label>
+                <label class="control-label col-sm-3">SubType:</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="SubType" placeholder="Enter">
+                    <input type="text" class="form-control" id="SubType" disabled="disabled">
                 </div>
                 <label class="control-label col-sm-3">&nbsp;</label>
                 <div class="col-sm-3">
-                    <input type="button" class="form-control btn btn-success" value="Others Composition" />
+                    <input type="button" class="form-control btn btn-success" value="Others Composition" onclick="ShowDataO('O');" />
                 </div>
             </div>
             <div class="form-group">
@@ -1195,10 +1427,14 @@
 
 
     </div>
-    <div id="divResultViewS" class="quote-platform-wrap">
+    <div id="divResultViewS" class="quote-platform-wrap form-horizontal">
+         
         <div class="form-group">
             <label class="control-label col-sm-1">ID:</label><div class="col-sm-1">
-                <input type="text" class="form-control" id="SID" placeholder="Enter">
+                <input type="text" class="form-control" id="SID" disabled="disabled">
+            </div>
+            <div class="col-sm-3 text-right ">
+                <button type="button" class="btn btn-primary" onclick="ShowComposition('S')">&laquo; Back </button>
             </div>
 
         </div>
@@ -1317,11 +1553,11 @@
             <label class="control-label col-sm-1">BAPDA:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SBAPDA" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-1">Benzoic_deriv_:</label><div class="col-sm-1">
+            <label class="control-label col-sm-1">Benzoic deriv:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SBenzoic_deriv_" placeholder="Enter">
             </div>
             <label class="control-label col-sm-1">Brand:</label><div class="col-sm-1">
-                <input type="text" class="form-control" id="SBrand" placeholder="Enter">
+                <input type="text" class="form-control" id="SBrand" disabled="disabled">
             </div>
             <label class="control-label col-sm-1">Cationics:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SCationics" placeholder="Enter">
@@ -1330,9 +1566,9 @@
         </div>
         <div class="form-group">
             <label class="control-label col-sm-1">Country:</label><div class="col-sm-1">
-                <input type="text" class="form-control" id="SCountry" placeholder="Enter">
+                <input type="text" class="form-control" id="SCountry" disabled="disabled">
             </div>
-            <label class="control-label col-sm-1">Cyclodextr__Der_:</label><div class="col-sm-1">
+            <label class="control-label col-sm-1">Cyclodextr Der_:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SCyclodextr__Der_" placeholder="Enter">
             </div>
             <label class="control-label col-sm-1">Cyclodextrin:</label><div class="col-sm-1">
@@ -1371,7 +1607,7 @@
             <label class="control-label col-sm-1">EFME:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SEFME" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-1">EthylcaproicNa:</label><div class="col-sm-1">
+            <label class="control-label col-sm-1">Ethylcaproic Na:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SEthylcaproicNa" placeholder="Enter">
             </div>
             <label class="control-label col-sm-1">FAGA:</label><div class="col-sm-1">
@@ -1389,22 +1625,22 @@
             <label class="control-label col-sm-1">FFA:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SFFA" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-1">Fluorinated_cmpd:</label><div class="col-sm-1">
+            <label class="control-label col-sm-1">Fluorinated cmpd:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SFluorinated_cmpd" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-1">Fluoroc_tone:</label><div class="col-sm-1">
+            <label class="control-label col-sm-1">Fluoroc tone:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SFluoroc_tone" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-1">Glycine_deriv_:</label><div class="col-sm-1">
+            <label class="control-label col-sm-1">Glycine deriv:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SGlycine_deriv_" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-1">Imidazoline_Der_:</label><div class="col-sm-1">
-                <input type="text" class="form-control" id="SImidazoline_Der_" placeholder="Enter">
+            <label class="control-label col-sm-1">Imidazoline Der_:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="SImidazolineDer_" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-1">Isothiazolinone_der_:</label><div class="col-sm-1">
+            <label class="control-label col-sm-1">Isothia zolinone der:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SIsothiazolinone_der_" placeholder="Enter">
             </div>
             <label class="control-label col-sm-1">LAS:</label><div class="col-sm-1">
@@ -1425,13 +1661,13 @@
             <label class="control-label col-sm-1">NonIonics:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SNonIonics" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-1">Phthalimide_deriv_:</label><div class="col-sm-1">
+            <label class="control-label col-sm-1">Phthalimide deriv:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SPhthalimide_deriv_" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-1">POE_Sorbitan_Ester:</label><div class="col-sm-1">
+            <label class="control-label col-sm-1">POE Sorbitan_Ester:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SPOE_Sorbitan_Ester" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-1">Poly_Asparaginate:</label><div class="col-sm-1">
+            <label class="control-label col-sm-1">Poly Asparaginate:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SPoly_Asparaginate" placeholder="Enter">
             </div>
 
@@ -1441,7 +1677,7 @@
                 <input type="text" class="form-control" id="SProdCode" placeholder="Enter">
             </div>
             <label class="control-label col-sm-1">Producer:</label><div class="col-sm-1">
-                <input type="text" class="form-control" id="SProducer" placeholder="Enter">
+                <input type="text" class="form-control" id="SProducer" disabled="disabled">
             </div>
             <label class="control-label col-sm-1">Sarkosyl:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SSarkosyl" placeholder="Enter">
@@ -1456,7 +1692,7 @@
         </div>
         <div class="form-group">
             <label class="control-label col-sm-1">SubType:</label><div class="col-sm-1">
-                <input type="text" class="form-control" id="SSubType" placeholder="Enter">
+                <input type="text" class="form-control" id="SSubType" disabled="disabled">
             </div>
             <label class="control-label col-sm-1">SulfoAcetate:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SSulfoAcetate" placeholder="Enter">
@@ -1476,11 +1712,11 @@
             <label class="control-label col-sm-1">TMAC:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="STMAC" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-1">tr_tr_muconic_acid_Na_salt:</label><div class="col-sm-1">
+            <label class="control-label col-sm-1">tr_muconic acid Na salt:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="Str_tr_muconic_acid_Na_salt" placeholder="Enter">
             </div>
             <label class="control-label col-sm-1">Type:</label><div class="col-sm-1">
-                <input type="text" class="form-control" id="SType" placeholder="Enter">
+                <input type="text" class="form-control" id="SType" disabled="disabled">
             </div>
             <label class="control-label col-sm-1">Unknown:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SUnknown" placeholder="Enter">
@@ -1488,446 +1724,951 @@
             <label class="control-label col-sm-1">WAX:</label><div class="col-sm-1">
                 <input type="text" class="form-control" id="SWAX" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-1">Year:</label><div class="col-sm-1">
-                <input type="text" class="form-control" id="SYear" placeholder="Enter">
-            </div>
+
 
         </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">Year:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="SYear" disabled="disabled">
+            </div>
+
+            <div class="col-sm-3">
+                <input type="button" class=" btn btn-warning" onclick="SaveDataS()" value="Update Surfactant">
+            </div>
+        </div>
+
 
     </div>
-    <div id="divResultViewP" class="quote-platform-wrap">
+    <div id="divResultViewP" class="quote-platform-wrap form-horizontal">
+         
         <div class="form-group">
-            <label class="control-label col-sm-4">ID:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="PID" placeholder="Enter">
+            <label class="control-label col-sm-3">ID:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="PID" disabled="disabled">
+            </div>
+             <div class="col-sm-3 text-right">
+                <button type="button" class="btn btn-primary" onclick="ShowComposition('P')">&laquo; Back </button>
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">Acry_Sulf_Copolymer:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Acry Sulf Copolymer:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PAcry_Sulf_Copolymer" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">Brand:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="PBrand" placeholder="Enter">
+            <label class="control-label col-sm-3">Brand:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="PBrand" disabled="disabled">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">Cellulose:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Cellulose:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PCellulose" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">Country:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="PCountry" placeholder="Enter">
+            <label class="control-label col-sm-3">Country:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="PCountry" disabled="disabled">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">DMDAAC_AM:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">DMDAAC_AM:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PDMDAAC_AM" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">Guar_gum:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Guar_gum:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PGuar_gum" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">PCA_Sulf_Terpolymer:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">PCA Sulf Terpolymer:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PPCA_Sulf_Terpolymer" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">PCACopolymer:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">PCACopolymer:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PPCACopolymer" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">PCAHomopolymer:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">PCAHomopolymer:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PPCAHomopolymer" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">PCAsilicate_polymer:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">PCAsilicate polymer:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PPCAsilicate_polymer" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">PEG:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">PEG:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PPEG" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">PEG_Carboxylate:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">PEG Carboxylate:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PPEG_Carboxylate" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">Polyamine_type:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Polyamine type:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PPolyamine_type" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">Polyethylene_immine:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Polyethylene immine:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PPolyethylene_immine" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">Polysulfonate:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Polysulfonate:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PPolysulfonate" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">Polyvinylalcohol:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Polyvinylalcohol:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PPolyvinylalcohol" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">ProdCode:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">ProdCode:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PProdCode" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">Producer:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="PProducer" placeholder="Enter">
+            <label class="control-label col-sm-3">Producer:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="PProducer" disabled="disabled">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">PVP:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">PVP:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PPVP" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">PVP_VI:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">PVP_VI:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PPVP_VI" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">PVPNO:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">PVPNO:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PPVPNO" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">SRP:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">SRP:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PSRP" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">SubType:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="PSubType" placeholder="Enter">
+            <label class="control-label col-sm-3">SubType:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="PSubType" disabled="disabled">
             </div>
-            <label class="control-label col-sm-4">Type:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="PType" placeholder="Enter">
+            <label class="control-label col-sm-3">Type:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="PType" disabled="disabled">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">Xanthan_Gum:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Xanthan Gum:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="PXanthan_Gum" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">Year:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="PYear" placeholder="Enter">
+            <label class="control-label col-sm-3">Year:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="PYear" disabled="disabled">
             </div>
 
+        </div>
+         <div class="form-group">
+            
+
+            <div class="col-sm-3">
+                <input type="button" class=" btn btn-warning" onclick="SaveDataP()" value="Update Polymer">
+            </div>
         </div>
 
     </div>
-    <div id="divResultViewB" class="quote-platform-wrap">
+    <div id="divResultViewB" class="quote-platform-wrap form-horizontal">
+         
         <div class="form-group">
-            <label class="control-label col-sm-4">ID:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="BID" placeholder="Enter">
+            <label class="control-label col-sm-3">ID:</label><div class="col-sm-3" >
+                <input type="text" class="form-control" id="BID" disabled="disabled">
             </div>
-
+            <div class="col-sm-3 text-right">
+                <button type="button" class="btn btn-primary" onclick="ShowComposition('B')">&laquo; Back </button>
+            </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">Accelerator:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Accelerator:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BAccelerator" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">ActivatorNOBS:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">ActivatorNOBS:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BActivatorNOBS" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">ActivatorTAED:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">ActivatorTAED:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BActivatorTAED" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">ActiveOxygen:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">ActiveOxygen:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BActiveOxygen" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">Boron:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Boron:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BBoron" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">Brand:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="BBrand" placeholder="Enter">
+            <label class="control-label col-sm-3">Brand:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="BBrand" disabled="disabled">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">ChlorineBleach:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">ChlorineBleach:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BChlorineBleach" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">Country:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="BCountry" placeholder="Enter">
+            <label class="control-label col-sm-3">Country:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="BCountry" disabled="disabled">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">H2O2:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">H2O2:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BH2O2" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">PAP:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">PAP:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BPAP" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">PerCarb:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">PerCarb:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BPerCarb" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">ProdCode:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">ProdCode:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BProdCode" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">Producer:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="BProducer" placeholder="Enter">
+            <label class="control-label col-sm-3">Producer:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="BProducer" disabled="disabled">
             </div>
-            <label class="control-label col-sm-4">Sodium_Dichloroisocyanurate:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Sodium Dichloroisocyanurate:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BSodium_Dichloroisocyanurate" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">SPM:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">SPM:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BSPM" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">SPT:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">SPT:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BSPT" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">SubType:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="BSubType" placeholder="Enter">
+            <label class="control-label col-sm-3">SubType:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="BSubType" disabled="disabled">
             </div>
-            <label class="control-label col-sm-4">Trichloroisocyanuric_Acid:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Trichloro isocyanuric Acid:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BTrichloroisocyanuric_Acid" placeholder="Enter">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">Type:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="BType" placeholder="Enter">
+            <label class="control-label col-sm-3">Type:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="BType" disabled="disabled">
             </div>
-            <label class="control-label col-sm-4">Year:</label><div class="col-sm-4">
-                <input type="text" class="form-control" id="BYear" placeholder="Enter">
+            <label class="control-label col-sm-3">Year:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="BYear" disabled="disabled">
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4">Zinc_Phthalocyanine_Sulphonate:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Zinc Phthalocyanine Sulphonate:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BZinc_Phthalocyanine_Sulphonate" placeholder="Enter">
             </div>
-            <label class="control-label col-sm-4">Zn_PhS:</label><div class="col-sm-4">
+            <label class="control-label col-sm-3">Zn_PhS:</label><div class="col-sm-3">
                 <input type="text" class="form-control" id="BZn_PhS" placeholder="Enter">
             </div>
 
         </div>
+        <div class="form-group">
+            
+
+            <div class="col-sm-3">
+                <input type="button" class=" btn btn-warning" onclick="SaveDataB()" value="Update Bleach">
+            </div>
+        </div>
     </div>
-    <div id="divResultViewBu" class="quote-platform-wrap">
+    <div id="divResultViewBu" class="quote-platform-wrap form-horizontal">
+       
         <div class="form-group">
             <label class="control-label col-sm-3">ID:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuID" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuID" disabled="disabled">
+            </div>
+             <div class="col-sm-3 text-right">
+                <button type="button" class="btn btn-primary" onclick="ShowComposition('Bu')">&laquo; Back </button>
+            </div>
 
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-3">AcetateNa:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuAcetateNa" placeholder="Enter"></div>
-            <label class="control-label col-sm-3">Active_Carbon:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuActive_Carbon" placeholder="Enter"></div>
 
-        </div>
         <div class="form-group">
             <label class="control-label col-sm-3">ATMP:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuATMP" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuATMP" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Bentonite:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuBentonite" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuBentonite" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Benzoic_acid:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuBenzoic_acid" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuBenzoic_acid" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Brand:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuBrand" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuBrand" disabled="disabled">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">CitrateNa:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuCitrateNa" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuCitrateNa" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Citric_Acid:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuCitric_Acid" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuCitric_Acid" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Clay:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuClay" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuClay" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Country:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuCountry" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuCountry" disabled="disabled">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">DPG:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuDPG" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuDPG" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">DTMPA:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuDTMPA" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuDTMPA" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">DTPA:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuDTPA" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuDTPA" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">DTPMP:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuDTPMP" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuDTPMP" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">EDDS:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuEDDS" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuEDDS" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">EDTA:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuEDTA" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuEDTA" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">EDTMPA:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuEDTMPA" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuEDTMPA" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">GLDA:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuGLDA" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuGLDA" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">HEDP:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuHEDP" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuHEDP" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Kaolin:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuKaolin" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuKaolin" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Lactic_Acid:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuLactic_Acid" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuLactic_Acid" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">LaySilic:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuLaySilic" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuLaySilic" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">MGDA:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuMGDA" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuMGDA" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Na_Adipate:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNa_Adipate" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNa_Adipate" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Na_Formiate:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNa_Formiate" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNa_Formiate" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Na_gluconate:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNa_gluconate" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNa_gluconate" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Na_metasilicate_anh_:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNa_metasilicate_anh_" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNa_metasilicate_anh_" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Na_poly_aspartate_:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNa_poly_aspartate_" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNa_poly_aspartate_" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Na_Salicylate:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNa_Salicylate" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNa_Salicylate" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Na_Sebacate:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNa_Sebacate" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNa_Sebacate" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Na_succinate:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNa_succinate" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNa_succinate" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Na_Tartrate:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNa_Tartrate" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNa_Tartrate" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Na2CO3:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNa2CO3" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNa2CO3" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Na2O_2SiO2:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNa2O_2SiO2" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNa2O_2SiO2" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Na3PO4:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNa3PO4" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNa3PO4" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Na4P2O7:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNa4P2O7" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNa4P2O7" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">NTA:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuNTA" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuNTA" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Paper_Sheets:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuPaper_Sheets" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuPaper_Sheets" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Phosphoric_acid:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuPhosphoric_acid" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuPhosphoric_acid" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">ProdCode:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuProdCode" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuProdCode" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Producer:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuProducer" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuProducer" disabled="disabled">
+            </div>
             <label class="control-label col-sm-3">Silica:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuSilica" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuSilica" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Strach:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuStrach" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuStrach" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">SubType:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuSubType" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuSubType" disabled="disabled">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Sucrose:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuSucrose" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuSucrose" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Sulfamic_acid:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuSulfamic_acid" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuSulfamic_acid" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Textile:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuTextile" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuTextile" placeholder="Enter">
+            </div>
             <label class="control-label col-sm-3">Trimethoxy_Benzoic_acid:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuTrimethoxy_Benzoic_acid" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuTrimethoxy_Benzoic_acid" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Type:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuType" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuType" disabled="disabled">
+            </div>
             <label class="control-label col-sm-3">Urea:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuUrea" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuUrea" placeholder="Enter">
+            </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">Year:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuYear" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuYear" disabled="disabled">
+            </div>
             <label class="control-label col-sm-3">Zeolite4A:</label><div class="col-sm-3">
-                <input type="text" class="form-control" id="BuZeolite4A" placeholder="Enter"></div>
+                <input type="text" class="form-control" id="BuZeolite4A" placeholder="Enter">
+            </div>
 
+        </div>
+        
+         <div class="form-group">
+            <label class="control-label col-sm-3">ZeoliteP:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="BuZeoliteP" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-3">ZnO:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="BuZnO" placeholder="Enter">
+            </div>
+
+        </div>
+        <div class="form-group">
+            
+
+            <div class="col-sm-3">
+                <input type="button" class=" btn btn-warning" onclick="SaveDataBu()" value="Update Builder">
+            </div>
         </div>
 
     </div>
-    <div id="divResultViewE" class="quote-platform-wrap">
-        <label class="control-label col-sm-3">ZeoliteP:</label><div class="col-sm-3">
-            <input type="text" class="form-control" id="BuZeoliteP" placeholder="Enter"></div>
-        <label class="control-label col-sm-3">ZnO:</label><div class="col-sm-4">
-            <input type="text" class="form-control" id="BuZnO" placeholder="Enter"></div>
+    <div id="divResultViewE" class="quote-platform-wrap form-horizontal">
+         
+        <div class="form-group">
+            <div class="form-group">
+                <label class="control-label col-sm-3">ID:</label><div class="col-sm-3">
+                    <input type="text" class="form-control" id="EID" disabled="disabled">
+                </div>
+                 <div class="col-sm-3 text-right">
+                <button type="button" class="btn btn-primary" onclick="ShowComposition('B')">&laquo; Back </button>
+            </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Carezyme 5SCEVU_G:</label><div class="col-sm-3">
+                    <input type="text" class="form-control" id="ECarezyme_5SCEVU_G" placeholder="Enter">
+                </div>
+                <label class="control-label col-sm-3">Country:</label><div class="col-sm-3">
+                    <input type="text" class="form-control" id="ECountry" disabled="disabled">
+                </div>
+
+            </div>
+            <div class="form-group">
+                
+                <label class="control-label col-sm-3">Lipolase 100KLU_G:</label><div class="col-sm-3">
+                    <input type="text" class="form-control" id="ELipolase_100KLU_G" placeholder="Enter">
+                </div>
+                <label class="control-label col-sm-3">Year:</label><div class="col-sm-3">
+                    <input type="text" class="form-control" id="EYear" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">ProdCode:</label><div class="col-sm-3">
+                    <input type="text" class="form-control" id="EProdCode" disabled="disabled">
+                </div>
+                <label class="control-label col-sm-3">Producer:</label><div class="col-sm-3">
+                    <input type="text" class="form-control" id="EProducer" disabled="disabled">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">Savinase 16KNPU_G:</label><div class="col-sm-3">
+                    <input type="text" class="form-control" id="ESavinase_16KNPU_G" placeholder="Enter">
+                </div>
+                <label class="control-label col-sm-3">SubType:</label><div class="col-sm-3">
+                    <input type="text" class="form-control" id="ESubType" disabled="disabled">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">Termamyl 300KNU_G:</label><div class="col-sm-3">
+                    <input type="text" class="form-control" id="ETermamyl_300KNU_G" placeholder="Enter">
+                </div>
+                <label class="control-label col-sm-3">Type:</label><div class="col-sm-3">
+                    <input type="text" class="form-control" id="EType" disabled="disabled">
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Brand:</label><div class="col-sm-3">
+                    <input type="text" class="form-control" id="EBrand"disabled="disabled">
+                </div>
+                  <div class="col-sm-3">
+                <input type="button" class=" btn btn-warning" onclick="SaveDataE()" value="Update Enzymes">
+            </div>
+
+            </div>
+             
+        </div>
 
     </div>
-    <div id="divResultViewSO" class="quote-platform-wrap">
+    <div id="divResultViewO" class="quote-platform-wrap form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-1">ID:</label><div class="col-sm-3">
+                <input type="text" class="form-control" id="OID" disabled="disabled">
+            </div>
+            <div class="col-sm-3 text-right">
+                <button type="button" class="btn btn-primary" onclick="ShowComposition('B')">&laquo; Back </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">ADPODS:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OADPODS" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Acid_Blue_9:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OAcid_Blue_9" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">AGE:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OAGE" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Alkanolamides:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OAlkanolamides" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Amido propylAO:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OAmidopropylAO" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">AmineOxides:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OAmineOxides" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">AO:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OAO" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Ballast:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OBallast" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Benzotriazole:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OBenzotriazole" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Benzyl alcohol:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OBenzyl_alcohol" placeholder="Enter">
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">Blankophor LPG:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OBlankophor_LPG" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Blankophor RKH120:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OBlankophor_RKH120" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Blankophor TX:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OBlankophor_TX" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Brand:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OBrand" disabled="disabled">
+            </div>
+            <label class="control-label col-sm-1">Butenediol:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OButenediol" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">Butoxydi glycol:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OButoxydiglycol" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Butoxy propanol:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OButoxypropanol" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">CaCl2:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OCaCl2" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">CO2:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OCO2" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Country:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OCountry" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">DEA:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="ODEA" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">DEG:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="ODEG" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">DEGBE:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="ODEGBE" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">DEGME:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="ODEGME" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Distearyl ether:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="ODistearyl_ether" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">DMDM Hydantoin:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="ODMDM_Hydantoin" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">DPGBE:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="ODPGBE" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">DPGME:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="ODPGME" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">DPGPE:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="ODPGPE" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">EG:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OEG" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">EGBE:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OEGBE" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">EGHE:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OEGHE" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Ethanol:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OEthanol" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">FADA:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OFADA" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">FAMA:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OFAMA" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">FAMIPA:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OFAMIPA" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Formal dehyde:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OFormaldehyde" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Formic Acid:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OFormic_Acid" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">FWA:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OFWA" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Glycerol:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OGlycerol" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">Glycol distearate:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OGlycol_distearate" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Hexylene glycol:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OHexylene_glycol" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Isopropanol:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OIsopropanol" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Lignin:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OLignin" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">MEA:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OMEA" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">Methylpropandiol:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OMethylpropandiol" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">MgCl2:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OMgCl2" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">MgSO4:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OMgSO4" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">MPG:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OMPG" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Na2SO4:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="ONa2SO4" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">NaCl:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="ONaCl" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">NaOH:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="ONaOH" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">NH4OH:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="ONH4OH" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">NonPolar Hydrocarbons:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="ONonPolarHydrocarbons" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Perfumes:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OPerfumes" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">PG:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OPG" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">PGBE:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OPGBE" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">PGME:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OPGME" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">PGPE:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OPGPE" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Phenoxy ethanol:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OPhenoxy_ethanol" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">PPG Butyl ether:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OPPG_Butyl_ether" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">ProdCode:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OProdCode" disabled="disabled">
+            </div>
+            <label class="control-label col-sm-1">Producer:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OProducer" disabled="disabled">
+            </div>
+            <label class="control-label col-sm-1">Quaternium 15:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OQuaternium_15" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">SCS:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OSCS" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">SiliconOils:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OSiliconOils" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Sorbitol:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OSorbitol" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">STS:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OSTS" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">SubType:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OSubType" disabled="disabled">
+            </div>
+            <label class="control-label col-sm-1">Sunflower seed oil:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OSunflower_seed_oil" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">SXS:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OSXS" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">TEA:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OTEA" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">TEG:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OTEG" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">TEGME:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OTEGME" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Terpineol:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OTerpineol" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">Tinopal 5BMGX:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OTinopal_5BMGX" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Tinopal AMSGX:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OTinopal_AMSGX" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Tinopal CBSX:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OTinopal_CBSX" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Tinopal DCS:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OTinopal_DCS" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Tinopal SWN:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OTinopal_SWN" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">Tinopal UNPAGX:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OTinopal_UNPAGX" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Tinosan:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OTinosan" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">TiO2:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OTiO2" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">TPGBE:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OTPGBE" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">TPGME:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OTPGME" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">Triclosan:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OTriclosan" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Tri hydroxy stearin:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OTrihydroxystearin" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">TTEG:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OTTEG" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Type:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OType" disabled="disabled">
+            </div>
+            <label class="control-label col-sm-1">Water:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OWater" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">X_2_Butoxy ethanol:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OX_2_Butoxyethanol" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Year:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OYear" disabled="disabled">
+            </div>
+            <label class="control-label col-sm-1">Zinc Pyrithione:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OZincPyrithione" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">Zn acetate:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OZn_acetate" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">ZnCl2:</label><div class="col-sm-2">
+                <input type="text" class="form-control" id="OZnCl2" placeholder="Enter">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1">ZnCO3:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OZnCO3" placeholder="Enter">
+            </div>
+            <label class="control-label col-sm-1">ZnSO4:</label><div class="col-sm-1">
+                <input type="text" class="form-control" id="OZnSO4" placeholder="Enter">
+            </div>
+             <div class="col-sm-3">
+                <input type="button" class=" btn btn-warning" onclick="SaveDataO()" value="Update Others">
+            </div>
+        </div>
+          
+
     </div>
-    <div style="display: none;" class="sort-loader onboard" id="loader">
+    <div style="display: block;" class="sort-loader onboard" id="loader">
         <p>
             <img alt="Loading..." src="../images/ajax-loader_new.gif"><br>
             <span id="lblWaiting">Loading please wait...</span>

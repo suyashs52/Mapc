@@ -93,7 +93,8 @@ namespace MapC.Ajax
                     tm.Type = Formatting.ConvertNullToString(context.Request["Type"]);
                     tm.Visc = Formatting.ConvertNullToString(context.Request["Visc"]);
                     tm.Year = Formatting.ConvertNullToString(context.Request["Year"]);
-
+                    tm.SaveGen(960);
+                   sb.Append("Successful@@Save Successfully!");
                 }
                 else if (Category == "gens")
                 {
@@ -274,12 +275,13 @@ namespace MapC.Ajax
                     tm.Unknown = Formatting.ConvertNullToString(context.Request["Unknown"]);
                     tm.WAX = Formatting.ConvertNullToString(context.Request["WAX"]);
                     tm.Year = Formatting.ConvertNullToString(context.Request["Year"]);
-
+                    tm.Save(960);
+                   sb.Append("Successful@@Save Successfully!");
                 }
                 else if (Category == "genp")
                 {
 
-                    BatPolymers tm = new Models.BatPolymers(970, ID);
+                    BatPolymers tm = new Models.BatPolymers(985, ID);
                     sb.Append("[{");
                     sb.Append("\"Acry_Sulf_Copolymer\" : \"" + tm.Acry_Sulf_Copolymer + "\",");
                     sb.Append("\"Brand\" : \"" + tm.Brand + "\",");
@@ -315,7 +317,7 @@ namespace MapC.Ajax
 
                 else if (Category == "genpe")
                 {
-                    BatPolymers tm = new Models.BatPolymers( );
+                    BatPolymers tm = new Models.BatPolymers();
                     tm.Acry_Sulf_Copolymer = Formatting.ConvertNullToDecimal(context.Request["Acry_Sulf_Copolymer"]);
                     tm.Brand = Formatting.ConvertNullToString(context.Request["Brand"]);
                     tm.Cellulose = Formatting.ConvertNullToDecimal(context.Request["Cellulose"]);
@@ -343,12 +345,13 @@ namespace MapC.Ajax
                     tm.Type = Formatting.ConvertNullToString(context.Request["Type"]);
                     tm.Xanthan_Gum = Formatting.ConvertNullToDecimal(context.Request["Xanthan_Gum"]);
                     tm.Year = Formatting.ConvertNullToString(context.Request["Year"]);
-
+                    tm.Save(960);
+                   sb.Append("Successful@@Save Successfully!");
                 }
                 else if (Category == "genb")
                 {
 
-                    BatBleach tm = new Models.BatBleach(970, ID);
+                    BatBleach tm = new Models.BatBleach(800, ID);
                     sb.Append("[{");
                     sb.Append("\"Accelerator\" : \"" + tm.Accelerator + "\",");
                     sb.Append("\"ActivatorNOBS\" : \"" + tm.ActivatorNOBS + "\",");
@@ -379,7 +382,7 @@ namespace MapC.Ajax
                 }
                 else if (Category == "genbe")
                 {
-                    BatBleach tm = new Models.BatBleach ();
+                    BatBleach tm = new Models.BatBleach();
                     tm.Accelerator = Formatting.ConvertNullToDecimal(context.Request["Accelerator"]);
                     tm.ActivatorNOBS = Formatting.ConvertNullToDecimal(context.Request["ActivatorNOBS"]);
                     tm.ActivatorTAED = Formatting.ConvertNullToDecimal(context.Request["ActivatorTAED"]);
@@ -403,11 +406,13 @@ namespace MapC.Ajax
                     tm.Year = Formatting.ConvertNullToString(context.Request["Year"]);
                     tm.Zinc_Phthalocyanine_Sulphonate = Formatting.ConvertNullToDecimal(context.Request["Zinc_Phthalocyanine_Sulphonate"]);
                     tm.Zn_PhS = Formatting.ConvertNullToDecimal(context.Request["Zn_PhS"]);
+                    tm.Save(960);
+                   sb.Append("Successful@@Save Successfully!");
                 }
                 else if (Category == "genbu")
                 {
 
-                    BatBuilders tm = new Models.BatBuilders(970, ID);
+                    BatBuilders tm = new Models.BatBuilders(700, ID);
                     sb.Append("[{");
                     sb.Append("\"AcetateNa\" : \"" + tm.AcetateNa + "\",");
                     sb.Append("\"Active_Carbon\" : \"" + tm.Active_Carbon + "\",");
@@ -531,11 +536,13 @@ namespace MapC.Ajax
                     tm.Zeolite4A = Formatting.ConvertNullToDecimal(context.Request["Zeolite4A"]);
                     tm.ZeoliteP = Formatting.ConvertNullToDecimal(context.Request["ZeoliteP"]);
                     tm.ZnO = Formatting.ConvertNullToDecimal(context.Request["ZnO"]);
+                    tm.Save(960);
+                   sb.Append("Successful@@Save Successfully!");
                 }
                 else if (Category == "genen")
                 {
 
-                    BatEnzymes tm = new Models.BatEnzymes(970, ID);
+                    BatEnzymes tm = new Models.BatEnzymes(600, ID);
                     sb.Append("[{");
                     sb.Append("\"Brand\" : \"" + tm.Brand + "\",");
                     sb.Append("\"Carezyme_5SCEVU_G\" : \"" + tm.Carezyme_5SCEVU_G + "\",");
@@ -553,10 +560,29 @@ namespace MapC.Ajax
                     sb.Append("}]");
 
                 }
+
+                else if (Category == "genene")
+                {
+                    BatEnzymes tm = new Models.BatEnzymes();
+                    tm.Brand = Formatting.ConvertNullToString(context.Request["Brand"]);
+                    tm.Carezyme_5SCEVU_G = Formatting.ConvertNullToDecimal(context.Request["Carezyme_5SCEVU_G"]);
+                    tm.Country = Formatting.ConvertNullToString(context.Request["Country"]);
+                    tm.ID = Formatting.ConvertNullToString(context.Request["ID"]);
+                    tm.Lipolase_100KLU_G = Formatting.ConvertNullToDecimal(context.Request["Lipolase_100KLU_G"]);
+                    tm.ProdCode = Formatting.ConvertNullToString(context.Request["ProdCode"]);
+                    tm.Producer = Formatting.ConvertNullToString(context.Request["Producer"]);
+                    tm.Savinase_16KNPU_G = Formatting.ConvertNullToDecimal(context.Request["Savinase_16KNPU_G"]);
+                    tm.SubType = Formatting.ConvertNullToString(context.Request["SubType"]);
+                    tm.Termamyl_300KNU_G = Formatting.ConvertNullToDecimal(context.Request["Termamyl_300KNU_G"]);
+                    tm.Type = Formatting.ConvertNullToString(context.Request["Type"]);
+                    tm.Year = Formatting.ConvertNullToString(context.Request["Year"]);
+                    tm.Save(960);
+                   sb.Append("Successful@@Save Successfully!");
+                }
                 else if (Category == "geno")
                 {
 
-                    BatOthers tm = new Models.BatOthers(970, ID);
+                    BatOthers tm = new Models.BatOthers(550, ID);
                     sb.Append("[{");
                     sb.Append("\"Acid_Blue_9\" : \"" + tm.Acid_Blue_9 + "\",");
                     sb.Append("\"ADPODS\" : \"" + tm.ADPODS + "\",");
@@ -658,6 +684,112 @@ namespace MapC.Ajax
                     sb.Append("\"ZnSO4\" : \"" + tm.ZnSO4 + "\",");
 
                     sb.Append("}]");
+
+                }
+                else if (Category == "genoe")
+                {
+                    BatOthers tm = new Models.BatOthers();
+
+                    tm.Acid_Blue_9 = Formatting.ConvertNullToDecimal(context.Request["Acid_Blue_9"]);
+                    tm.ADPODS = Formatting.ConvertNullToDecimal(context.Request["ADPODS"]);
+                    tm.AGE = Formatting.ConvertNullToDecimal(context.Request["AGE"]);
+                    tm.Alkanolamides = Formatting.ConvertNullToDecimal(context.Request["Alkanolamides"]);
+                    tm.AmidopropylAO = Formatting.ConvertNullToString(context.Request["AmidopropylAO"]);
+                    tm.AmineOxides = Formatting.ConvertNullToDecimal(context.Request["AmineOxides"]);
+                    tm.AO = Formatting.ConvertNullToString(context.Request["AO"]);
+                    tm.Ballast = Formatting.ConvertNullToDecimal(context.Request["Ballast"]);
+                    tm.Benzotriazole = Formatting.ConvertNullToDecimal(context.Request["Benzotriazole"]);
+                    tm.Benzyl_alcohol = Formatting.ConvertNullToDecimal(context.Request["Benzyl_alcohol"]);
+                    tm.Blankophor_LPG = Formatting.ConvertNullToDecimal(context.Request["Blankophor_LPG"]);
+                    tm.Blankophor_RKH120 = Formatting.ConvertNullToDecimal(context.Request["Blankophor_RKH120"]);
+                    tm.Blankophor_TX = Formatting.ConvertNullToDecimal(context.Request["Blankophor_TX"]);
+                    tm.Brand = Formatting.ConvertNullToString(context.Request["Brand"]);
+                    tm.Butenediol = Formatting.ConvertNullToDecimal(context.Request["Butenediol"]);
+                    tm.Butoxydiglycol = Formatting.ConvertNullToDecimal(context.Request["Butoxydiglycol"]);
+                    tm.Butoxypropanol = Formatting.ConvertNullToDecimal(context.Request["Butoxypropanol"]);
+                    tm.CaCl2 = Formatting.ConvertNullToDecimal(context.Request["CaCl2"]);
+                    tm.CO2 = Formatting.ConvertNullToDecimal(context.Request["CO2"]);
+                    tm.Country = Formatting.ConvertNullToString(context.Request["Country"]);
+                    tm.DEA = Formatting.ConvertNullToDecimal(context.Request["DEA"]);
+                    tm.DEG = Formatting.ConvertNullToDecimal(context.Request["DEG"]);
+                    tm.DEGBE = Formatting.ConvertNullToDecimal(context.Request["DEGBE"]);
+                    tm.DEGME = Formatting.ConvertNullToDecimal(context.Request["DEGME"]);
+                    tm.Distearyl_ether = Formatting.ConvertNullToDecimal(context.Request["Distearyl_ether"]);
+                    tm.DMDM_Hydantoin = Formatting.ConvertNullToDecimal(context.Request["DMDM_Hydantoin"]);
+                    tm.DPGBE = Formatting.ConvertNullToDecimal(context.Request["DPGBE"]);
+                    tm.DPGME = Formatting.ConvertNullToDecimal(context.Request["DPGME"]);
+                    tm.DPGPE = Formatting.ConvertNullToDecimal(context.Request["DPGPE"]);
+                    tm.EG = Formatting.ConvertNullToDecimal(context.Request["EG"]);
+                    tm.EGBE = Formatting.ConvertNullToDecimal(context.Request["EGBE"]);
+                    tm.EGHE = Formatting.ConvertNullToDecimal(context.Request["EGHE"]);
+                    tm.Ethanol = Formatting.ConvertNullToDecimal(context.Request["Ethanol"]);
+                    tm.FADA = Formatting.ConvertNullToString(context.Request["FADA"]);
+                    tm.FAMA = Formatting.ConvertNullToString(context.Request["FAMA"]);
+                    tm.FAMIPA = Formatting.ConvertNullToString(context.Request["FAMIPA"]);
+                    tm.Formaldehyde = Formatting.ConvertNullToDecimal(context.Request["Formaldehyde"]);
+                    tm.Formic_Acid = Formatting.ConvertNullToDecimal(context.Request["Formic_Acid"]);
+                    tm.FWA = Formatting.ConvertNullToDecimal(context.Request["FWA"]);
+                    tm.Glycerol = Formatting.ConvertNullToDecimal(context.Request["Glycerol"]);
+                    tm.Glycol_distearate = Formatting.ConvertNullToDecimal(context.Request["Glycol_distearate"]);
+                    tm.Hexylene_glycol = Formatting.ConvertNullToDecimal(context.Request["Hexylene_glycol"]);
+                    tm.ID = Formatting.ConvertNullToString(context.Request["ID"]);
+                    tm.Isopropanol = Formatting.ConvertNullToDecimal(context.Request["Isopropanol"]);
+                    tm.Lignin = Formatting.ConvertNullToDecimal(context.Request["Lignin"]);
+                    tm.MEA = Formatting.ConvertNullToDecimal(context.Request["MEA"]);
+                    tm.Methylpropandiol = Formatting.ConvertNullToDecimal(context.Request["Methylpropandiol"]);
+                    tm.MgCl2 = Formatting.ConvertNullToDecimal(context.Request["MgCl2"]);
+                    tm.MgSO4 = Formatting.ConvertNullToDecimal(context.Request["MgSO4"]);
+                    tm.MPG = Formatting.ConvertNullToDecimal(context.Request["MPG"]);
+                    tm.Na2SO4 = Formatting.ConvertNullToDecimal(context.Request["Na2SO4"]);
+                    tm.NaCl = Formatting.ConvertNullToDecimal(context.Request["NaCl"]);
+                    tm.NaOH = Formatting.ConvertNullToDecimal(context.Request["NaOH"]);
+                    tm.NH4OH = Formatting.ConvertNullToDecimal(context.Request["NH4OH"]);
+                    tm.NonPolarHydrocarbons = Formatting.ConvertNullToDecimal(context.Request["NonPolarHydrocarbons"]);
+                    tm.Perfumes = Formatting.ConvertNullToDecimal(context.Request["Perfumes"]);
+                    tm.PG = Formatting.ConvertNullToDecimal(context.Request["PG"]);
+                    tm.PGBE = Formatting.ConvertNullToDecimal(context.Request["PGBE"]);
+                    tm.PGME = Formatting.ConvertNullToDecimal(context.Request["PGME"]);
+                    tm.PGPE = Formatting.ConvertNullToDecimal(context.Request["PGPE"]);
+                    tm.Phenoxy_ethanol = Formatting.ConvertNullToDecimal(context.Request["Phenoxy_ethanol"]);
+                    tm.PPG_Butyl_ether = Formatting.ConvertNullToDecimal(context.Request["PPG_Butyl_ether"]);
+                    tm.ProdCode = Formatting.ConvertNullToString(context.Request["ProdCode"]);
+                    tm.Producer = Formatting.ConvertNullToString(context.Request["Producer"]);
+                    tm.Quaternium_15 = Formatting.ConvertNullToDecimal(context.Request["Quaternium_15"]);
+                    tm.SCS = Formatting.ConvertNullToDecimal(context.Request["SCS"]);
+                    tm.SiliconOils = Formatting.ConvertNullToDecimal(context.Request["SiliconOils"]);
+                    tm.Sorbitol = Formatting.ConvertNullToDecimal(context.Request["Sorbitol"]);
+                    tm.STS = Formatting.ConvertNullToDecimal(context.Request["STS"]);
+                    tm.SubType = Formatting.ConvertNullToString(context.Request["SubType"]);
+                    tm.Sunflower_seed_oil = Formatting.ConvertNullToDecimal(context.Request["Sunflower_seed_oil"]);
+                    tm.SXS = Formatting.ConvertNullToDecimal(context.Request["SXS"]);
+                    tm.TEA = Formatting.ConvertNullToDecimal(context.Request["TEA"]);
+                    tm.TEG = Formatting.ConvertNullToDecimal(context.Request["TEG"]);
+                    tm.TEGME = Formatting.ConvertNullToDecimal(context.Request["TEGME"]);
+                    tm.Terpineol = Formatting.ConvertNullToDecimal(context.Request["Terpineol"]);
+                    tm.Tinopal_5BMGX = Formatting.ConvertNullToDecimal(context.Request["Tinopal_5BMGX"]);
+                    tm.Tinopal_AMSGX = Formatting.ConvertNullToDecimal(context.Request["Tinopal_AMSGX"]);
+                    tm.Tinopal_CBSX = Formatting.ConvertNullToDecimal(context.Request["Tinopal_CBSX"]);
+                    tm.Tinopal_DCS = Formatting.ConvertNullToDecimal(context.Request["Tinopal_DCS"]);
+                    tm.Tinopal_SWN = Formatting.ConvertNullToDecimal(context.Request["Tinopal_SWN"]);
+                    tm.Tinopal_UNPAGX = Formatting.ConvertNullToDecimal(context.Request["Tinopal_UNPAGX"]);
+                    tm.Tinosan = Formatting.ConvertNullToDecimal(context.Request["Tinosan"]);
+                    tm.TiO2 = Formatting.ConvertNullToDecimal(context.Request["TiO2"]);
+                    tm.TPGBE = Formatting.ConvertNullToDecimal(context.Request["TPGBE"]);
+                    tm.TPGME = Formatting.ConvertNullToDecimal(context.Request["TPGME"]);
+                    tm.Triclosan = Formatting.ConvertNullToDecimal(context.Request["Triclosan"]);
+                    tm.Trihydroxystearin = Formatting.ConvertNullToDecimal(context.Request["Trihydroxystearin"]);
+                    tm.TTEG = Formatting.ConvertNullToDecimal(context.Request["TTEG"]);
+                    tm.Type = Formatting.ConvertNullToString(context.Request["Type"]);
+                    tm.Water = Formatting.ConvertNullToDecimal(context.Request["Water"]);
+                    tm.X_2_Butoxyethanol = Formatting.ConvertNullToDecimal(context.Request["X_2_Butoxyethanol"]);
+                    tm.Year = Formatting.ConvertNullToString(context.Request["Year"]);
+                    tm.ZincPyrithione = Formatting.ConvertNullToDecimal(context.Request["ZincPyrithione"]);
+                    tm.Zn_acetate = Formatting.ConvertNullToDecimal(context.Request["Zn_acetate"]);
+                    tm.ZnCl2 = Formatting.ConvertNullToDecimal(context.Request["ZnCl2"]);
+                    tm.ZnCO3 = Formatting.ConvertNullToDecimal(context.Request["ZnCO3"]);
+                    tm.ZnSO4 = Formatting.ConvertNullToDecimal(context.Request["ZnSO4"]);
+                    tm.Save(960);
+                   sb.Append("Successful@@Save Successfully!");
 
                 }
                 else

@@ -368,7 +368,7 @@ namespace MapC.Models
                         + "',NO='" + NO + "',NonIonics='" + NonIonics + "',Phthalimide_deriv_='" + Phthalimide_deriv_ + "',POE_Sorbitan_Ester='" + POE_Sorbitan_Ester + "',Poly_Asparaginate='" + Poly_Asparaginate
                         + "',ProdCode='" + ProdCode + "',Producer='" + Producer + "',Sarkosyl='" + Sarkosyl + "',SAS='" + SAS + "',Soaps='" + Soaps + "',SubType='" + SubType + "',SulfoAcetate='" + SulfoAcetate
                         + "',Sulfobetaine='" + Sulfobetaine + "',Sulphates='" + Sulphates + "',Sulphonates='" + Sulphonates + "',TMAC='" + TMAC + "',tr_tr_muconic_acid_Na_salt='" + tr_tr_muconic_acid_Na_salt
-                        + "',Type='" + Type + "',Unknown='" + Unknown + "',WAX='" + WAX + "',Year='" + Year + "' WHRERE ID='" + ID + "'";
+                        + "',Type='" + Type + "',Unknown='" + Unknown + "',WAX='" + WAX + "',Year='" + Year + "' WHERE ID='" + ID + "'";
                 }
                 else if (id == 955)
                 {
@@ -521,7 +521,7 @@ namespace MapC.Models
                             + "Guar_gum='" + Guar_gum + "',ID='" + ID + "',PCA_Sulf_Terpolymer='" + PCA_Sulf_Terpolymer + "',PCACopolymer='" + PCACopolymer + "',PCAHomopolymer='" + PCAHomopolymer + "',"
                             + "PCAsilicate_polymer='" + PCAsilicate_polymer + "',PEG='" + PEG + "',PEG_Carboxylate='" + PEG_Carboxylate + "',Polyamine_type='" + Polyamine_type + "',Polyethylene_immine='" + Polyethylene_immine + "',"
                             + "Polysulfonate='" + Polysulfonate + "',Polyvinylalcohol='" + Polyvinylalcohol + "',ProdCode='" + ProdCode + "',Producer='" + Producer + "',PVP='" + PVP + "',"
-                            + "PVP_VI='" + PVP_VI + "',PVPNO='" + PVPNO + "',SRP='" + SRP + "',SubType='" + SubType + "',Type='" + Type + "',Xanthan_Gum='" + Xanthan_Gum + "',Year='" + Year + "'";
+                            + "PVP_VI='" + PVP_VI + "',PVPNO='" + PVPNO + "',SRP='" + SRP + "',SubType='" + SubType + "',Type='" + Type + "',Xanthan_Gum='" + Xanthan_Gum + "',Year='" + Year + "' WHERE ID='"+ID+"'";
 
                                             }
                 else if (id == 955)
@@ -658,7 +658,7 @@ namespace MapC.Models
                             + "Boron='" + Boron + "',Brand='" + Brand + "',ChlorineBleach='" + ChlorineBleach + "',Country='" + Country + "',H2O2='" + H2O2 + "',ID='" + ID + "',PAP='" + PAP + "',PerCarb='" + PerCarb + "',"
                             + "ProdCode='" + ProdCode + "',Producer='" + Producer + "',Sodium_Dichloroisocyanurate='" + Sodium_Dichloroisocyanurate + "',"
                             + "SPM='" + SPM + "',SPT='" + SPT + "',SubType='" + SubType + "',Trichloroisocyanuric_Acid='" + Trichloroisocyanuric_Acid + "',Type='" + Type + "',Year='" + Year + "',Zinc_Phthalocyanine_Sulphonate='" + Zinc_Phthalocyanine_Sulphonate + "',"
-                            + "Zn_PhS='" + Zn_PhS + "',";
+                            + "Zn_PhS='" + Zn_PhS + "' WHERE ID='"+ID+"'";
 
                 }
                 else if (id == 955)
@@ -867,7 +867,7 @@ namespace MapC.Models
                             +"Na2CO3='" +Na2CO3+ "',Na2O_2SiO2='" +Na2O_2SiO2+ "',Na3PO4='" +Na3PO4+ "',Na4P2O7='" +Na4P2O7+ "',Na5P3O10='" +Na5P3O10+ "',NaHCO3='" +NaHCO3+ "',NTA='" +NTA+ "',Paper_Sheets='" +Paper_Sheets+ "',"
                             +"Phosphoric_acid='" +Phosphoric_acid+ "',ProdCode='" +ProdCode+ "',Producer='" +Producer+ "',Silica='" +Silica+ "',Strach='" +Strach+ "',SubType='" +SubType+ "',Sucrose='" +Sucrose+ "',"
                             +"Sulfamic_acid='" +Sulfamic_acid+ "',Textile='" +Textile+ "',Trimethoxy_Benzoic_acid='" +Trimethoxy_Benzoic_acid+ "',Type='" +Type+ "',Urea='" +Urea+ "',Year='" +Year+ "',Zeolite4A='" +Zeolite4A+ "',"
-                            +"ZeoliteP='" +ZeoliteP+ "',ZnO='" +ZnO+ "',";
+                            + "ZeoliteP='" + ZeoliteP + "',ZnO='" + ZnO + "' WHERE ID='" + ID + "'";
                 }
                 else if (id == 955)
                 {
@@ -980,10 +980,14 @@ namespace MapC.Models
                 string input = "";
                 if (id == 960)
                 {
+                    input = "[BatEnzymesT] set Brand='" + Brand + "',Carezyme_5SCEVU_G='" + Carezyme_5SCEVU_G + "',Country='" + Country + "',ID='" + ID + "',Lipolase_100KLU_G='" + Lipolase_100KLU_G + "',"
+                            +"ProdCode='" +ProdCode+ "',Producer='" +Producer+ "',Savinase_16KNPU_G='" +Savinase_16KNPU_G+ "',SubType='" +SubType+ "',Termamyl_300KNU_G='" +Termamyl_300KNU_G+ "',"
+                            + "Type='" + Type + "',Year='" + Year + "' WHERE ID='" + ID + "'";
                 }
                 else if (id == 955)
                 {
-
+                    input = "[BatEnzymesT] (Brand,Carezyme_5SCEVU_G,Country,ID,Lipolase_100KLU_G,ProdCode,Producer,Savinase_16KNPU_G,SubType,Termamyl_300KNU_G,Type,Year) Values("
+                        + "'"+Brand+ "','"+Carezyme_5SCEVU_G+ "','"+Country+ "','"+ID+ "','"+Lipolase_100KLU_G+ "','"+ProdCode+ "','"+Producer+ "','"+Savinase_16KNPU_G+ "','"+SubType+ "','"+Termamyl_300KNU_G+ "','"+Type+ "','"+Year+ "')";
                 }
                 using (SqlConnection Cnxn = new SqlConnection(con))
                 {
@@ -1255,9 +1259,41 @@ namespace MapC.Models
                 string input = "";
                 if (id == 960)
                 {
+                    input = "[BatOtherT] SET  Acid_Blue_9	='" + Acid_Blue_9 + "',ADPODS='" + ADPODS + "',AGE='" + AGE + "',Alkanolamides='" + Alkanolamides + "',AmidopropylAO='" + AmidopropylAO + "',"
+                            + "AmineOxides='" + AmineOxides + "',AO='" + AO + "',Ballast='" + Ballast + "',Benzotriazole='" + Benzotriazole + "',Benzyl_alcohol='" + Benzyl_alcohol + "',"
+                            + "Blankophor_LPG='" + Blankophor_LPG + "',Blankophor_RKH120='" + Blankophor_RKH120 + "',Blankophor_TX='" + Blankophor_TX + "',Brand='" + Brand + "',"
+                            + "Butenediol='" + Butenediol + "',Butoxydiglycol='" + Butoxydiglycol + "',Butoxypropanol='" + Butoxypropanol + "',CaCl2='" + CaCl2 + "',CO2='" + CO2 + "',"
+                            + "Country='" + Country + "',DEA='" + DEA + "',DEG='" + DEG + "',DEGBE='" + DEGBE + "',DEGME='" + DEGME + "',Distearyl_ether='" + Distearyl_ether + "',DMDM_Hydantoin='" + DMDM_Hydantoin + "',"
+                            + "DPGBE='" + DPGBE + "',DPGME='" + DPGME + "',DPGPE='" + DPGPE + "',EG='" + EG + "',EGBE='" + EGBE + "',EGHE='" + EGHE + "',Ethanol='" + Ethanol + "',FADA='" + FADA + "',"
+                            + "FAMA='" + FAMA + "',FAMIPA='" + FAMIPA + "',Formaldehyde='" + Formaldehyde + "',Formic_Acid='" + Formic_Acid + "',FWA='" + FWA + "',Glycerol='" + Glycerol + "',Glycol_distearate='" + Glycol_distearate + "',"
+                            + "Hexylene_glycol='" + Hexylene_glycol + "',ID='" + ID + "',Isopropanol='" + Isopropanol + "',Lignin='" + Lignin + "',MEA='" + MEA + "',Methylpropandiol='" + Methylpropandiol + "',"
+                            + "MgCl2='" + MgCl2 + "',MgSO4='" + MgSO4 + "',MPG='" + MPG + "',Na2SO4='" + Na2SO4 + "',NaCl='" + NaCl + "',NaOH='" + NaOH + "',NH4OH='" + NH4OH + "',NonPolarHydrocarbons='" + NonPolarHydrocarbons + "',"
+                            + "Perfumes='" + Perfumes + "',PG='" + PG + "',PGBE='" + PGBE + "',PGME='" + PGME + "',PGPE='" + PGPE + "',Phenoxy_ethanol='" + Phenoxy_ethanol + "',PPG_Butyl_ether='" + PPG_Butyl_ether + "',"
+                            + "ProdCode='" + ProdCode + "',Producer='" + Producer + "',Quaternium_15='" + Quaternium_15 + "',SCS='" + SCS + "',SiliconOils='" + SiliconOils + "',Sorbitol='" + Sorbitol + "',"
+                            + "STS='" + STS + "',SubType='" + SubType + "',Sunflower_seed_oil='" + Sunflower_seed_oil + "',SXS='" + SXS + "',TEA='" + TEA + "',TEG='" + TEG + "',TEGME='" + TEGME + "',Terpineol='" + Terpineol + "',"
+                            + "Tinopal_5BMGX='" + Tinopal_5BMGX + "',Tinopal_AMSGX='" + Tinopal_AMSGX + "',Tinopal_CBSX='" + Tinopal_CBSX + "',Tinopal_DCS='" + Tinopal_DCS + "',Tinopal_SWN='" + Tinopal_SWN + "',"
+                            + "Tinopal_UNPAGX='" + Tinopal_UNPAGX + "',Tinosan='" + Tinosan + "',TiO2='" + TiO2 + "',TPGBE='" + TPGBE + "',TPGME='" + TPGME + "',Triclosan='" + Triclosan + "',Trihydroxystearin='" + Trihydroxystearin + "',"
+                            + "TTEG='" + TTEG + "',Type='" + Type + "',Water='" + Water + "',X_2_Butoxyethanol='" + X_2_Butoxyethanol + "',Year='" + Year + "',ZincPyrithione='" + ZincPyrithione + "',Zn_acetate='" + Zn_acetate + "',"
+                            + "ZnCl2='" + ZnCl2 + "',ZnCO3='" + ZnCO3 + "',ZnSO4='" + ZnSO4 + "' WHERE ID='" + ID + "'";
                 }
                 else if (id == 955)
                 {
+                    input = "BatOtherT (Acid_Blue_9,ADPODS,AGE,Alkanolamides,AmidopropylAO,AmineOxides,AO,Ballast,Benzotriazole,Benzyl_alcohol,Blankophor_LPG,Blankophor_RKH120,Blankophor_TX,"
+                            + "Brand,Butenediol,Butoxydiglycol,Butoxypropanol,CaCl2,CO2,Country,DEA,DEG,DEGBE,DEGME,Distearyl_ether,DMDM_Hydantoin,DPGBE,DPGME,DPGPE,EG,EGBE,EGHE,Ethanol,"
+                            + "FADA,FAMA,FAMIPA,Formaldehyde,Formic_Acid,FWA,Glycerol,Glycol_distearate,Hexylene_glycol,ID,Isopropanol,Lignin,MEA,Methylpropandiol,gCl2,MgSO4,MPG,Na2SO4,"
+                            + "NaCl,NaOH,NH4OH,NonPolarHydrocarbons,Perfumes,G,PGBE,PGME,PGPE,Phenoxy_ethanol,PPG_Butyl_ether,ProdCode,Producer,Quaternium_15,SCS,SiliconOils,Sorbitol,STS,SubType,Sunflower_seed_oil,SXS,TEA,TEG,"
+                            + "TEGME,Terpineol,Tinopal_5BMGX,Tinopal_AMSGX,Tinopal_CBSX,Tinopal_DCS,Tinopal_SWN,Tinopal_UNPAGX,Tinosan,TiO2,TPGBE,TPGME,Triclosan,Trihydroxystearin,TTEG,"
+                            + "Type,Water,X_2_Butoxyethanol,Year,ZincPyrithione,Zn_acetate,ZnCl2,ZnCO3,ZnSO4) Values("
+                            + "'" + Acid_Blue_9 + "','" + ADPODS + "','" + AGE + "','" + Alkanolamides + "','" + AmidopropylAO + "','" + AmineOxides + "','" + AO + "','" + Ballast + "','" + Benzotriazole + "','" + Benzyl_alcohol + "',"
+                            + "'" + Blankophor_LPG + "','" + Blankophor_RKH120 + "','" + Blankophor_TX + "','" + Brand + "','" + Butenediol + "','" + Butoxydiglycol + "','" + Butoxypropanol + "','" + CaCl2 + "','" + CO2 + "',"
+                            + "'" + Country + "','" + DEA + "','" + DEG + "','" + DEGBE + "','" + DEGME + "','" + Distearyl_ether + "','" + DMDM_Hydantoin + "','" + DPGBE + "','" + DPGME + "','" + DPGPE + "','" + EG + "','" + EGBE + "',"
+                            + "'" + EGHE + "','" + Ethanol + "','" + FADA + "','" + FAMA + "','" + FAMIPA + "'," + Formaldehyde + "','" + Formic_Acid + "','" + FWA + "','" + Glycerol + "','" + Glycol_distearate + "','" + Hexylene_glycol + "',"
+                            + "'" + ID + "','" + Isopropanol + "','" + Lignin + "','" + MEA + "','" + Methylpropandiol + "','" + MgCl2 + "','" + MgSO4 + "','" + MPG + "','" + Na2SO4 + "','" + NaCl + "','" + NaOH + "','" + NH4OH + "',"
+                            + "'" + NonPolarHydrocarbons + "','" + Perfumes + "','" + PG + "','" + PGBE + "','" + PGME + "','" + PGPE + "','" + Phenoxy_ethanol + "','" + PPG_Butyl_ether + "','" + ProdCode + "','" + Producer + "',"
+                            + "'" + Quaternium_15 + "','" + SCS + "','" + SiliconOils + "','" + Sorbitol + "','" + STS + "','" + SubType + "','" + Sunflower_seed_oil + "','" + SXS + "','" + TEA + "','" + TEG + "','" + TEGME + "','" + Terpineol + "',"
+                            + "'" + Tinopal_5BMGX + "','" + Tinopal_AMSGX + "','" + Tinopal_CBSX + "','" + Tinopal_DCS + "','" + Tinopal_SWN + "','" + Tinopal_UNPAGX + "','" + Tinosan + "','" + TiO2 + "','" + TPGBE + "',"
+                            + "'" + TPGME + "','" + Triclosan + "','" + Trihydroxystearin + "','" + TTEG + "','" + Type + "','" + Water + "','" + X_2_Butoxyethanol + "','" + Year + "','" + ZincPyrithione + "','" + Zn_acetate + "',"
+                            + "'" + ZnCl2 + "','" + ZnCO3 + "','" + ZnSO4 + "')";
 
                 }
                 using (SqlConnection Cnxn = new SqlConnection(con))
