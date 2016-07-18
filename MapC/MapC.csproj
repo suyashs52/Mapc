@@ -191,6 +191,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Data\MapCscript.sql" />
+    <Content Include="Data\MarketMapping HHC v04.accdb" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\ajax-loader_new.gif" />
     <Content Include="Images\icon_check.png" />
